@@ -15,6 +15,7 @@ class BarcodeScanViewController: UIViewController {
     // MARK: - IB Variables
     
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var statisticsButton: UIBarButtonItem!
     @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
     @IBOutlet weak var manualInputTextField: UITextField!
     @IBOutlet weak var currentCountLabel: UILabel!
@@ -154,7 +155,7 @@ class BarcodeScanViewController: UIViewController {
         debugPrint("Failed to set up barcode scanning")
     }
     
-    func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage) {
+    func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage, orange: Bool) {
         // display an overlay and give quick vibration feedback
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
@@ -163,6 +164,7 @@ class BarcodeScanViewController: UIViewController {
         label.textColor = textColor
         overlay.backgroundColor = overlayTint
         self.image.image = image
+        self.image.tintColor = textColor
         
         // show overlay
         overlay.isHidden = false
@@ -187,9 +189,10 @@ class BarcodeScanViewController: UIViewController {
     // MARK: - Statistics View Button
     
     @IBAction func statisticsButton(_ sender: Any) {
+        guard let detail = self.eventDetail else { return }
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
         let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController") as! StatisticsTableViewController
-        statisticsViewController.eventDetail = self.eventDetail
+        statisticsViewController.eventDetail = detail
         self.navigationController?.pushViewController(statisticsViewController, animated: true)
     }
 }
@@ -200,19 +203,19 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
         DispatchQueue.main.async {
             self.checkin.checkEventDetails(self)
             switch response.signup.membership {
-            case .extraordinary, .honorary:
-                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"))
+            case .extraordinary, .honorary, .regular:
+                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: true)
             case .regular:
-                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"))
+                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: false)
             case .none:
-                self.configureOverlay(response.message, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"))
+                self.configureOverlay(response.message, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"), orange: false)
             }
         }
     }
     
     func legiCheckFailed(_ error: String, statusCode: Int) {
         DispatchQueue.main.async {
-            self.configureOverlay(error, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"))
+            self.configureOverlay(error, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"), orange: false)
         }
     }
 }

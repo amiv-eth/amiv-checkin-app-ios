@@ -23,5 +23,4 @@ extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
             checkin.check(stringValue, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
-    
 }

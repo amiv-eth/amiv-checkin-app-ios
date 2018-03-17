@@ -16,10 +16,6 @@ class EventInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    override func layoutSubviews() {
-        self.keyLabel.numberOfLines = 0
-    }
 
     func config(_ key: String, value: String) {
         self.keyLabel.text = key
