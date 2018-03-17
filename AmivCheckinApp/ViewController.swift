@@ -21,14 +21,50 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.pinTitleLabel.text = "Enter pin"
+        
+        let recognizer = UIGestureRecognizer(target: self, action: #selector(resignKeyboard))
+        self.view.addGestureRecognizer(recognizer)
+        
+        self.setUpSubmitButton()
+    }
+    
+    func setUpSubmitButton() {
+        self.pinSubmitButton.setTitleColor(.white, for: .normal)
+        self.pinSubmitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
+        self.pinSubmitButton.layer.cornerRadius = 8
     }
 
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         
     }
+    
+    @objc func resignKeyboard() {
+        print("resigned")
+        self.pinTextField.resignFirstResponder()
+    }
 
     @IBAction func pinSubmitButtonTapped(_ sender: Any) {
-        print(self.pinTextField.text!)
+        if let pin = self.pinTextField.text {
+            let checkin = Checkin()
+            checkin.check(pin, delegate: self)
+        }
+        
+    }
+}
+
+extension ViewController: CheckinPinResponseDelegate {
+    
+    func validPin(_ message: String) {
+        print("valid")
+        let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
+        let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeNavigationController")
+        DispatchQueue.main.async {
+            self.present(barcodeView, animated: true, completion: nil)
+        }
+    }
+    
+    func invalidPin(_ error: String, statusCode: Int) {
+        print("Code is invalid")
     }
     
 }

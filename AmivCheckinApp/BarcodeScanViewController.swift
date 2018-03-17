@@ -45,6 +45,9 @@ class BarcodeScanViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.overlayTapped(_:)))
         self.overlay.addGestureRecognizer(recognizer)
         recognizer.numberOfTapsRequired = 1
+        
+        let checkin = Checkin()
+        checkin.startPeriodicUpdate(self)
     }
     
     func setupBarcodeScanning() {
@@ -122,7 +125,6 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     func validLegi(message: String) {
-        captureSession.stopRunning()    // stop capture session until tap
         
         // display an overlay and give quick vibration feedback
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
@@ -140,7 +142,6 @@ class BarcodeScanViewController: UIViewController {
     }
     
     func invalidLegi(message: String) {
-        captureSession.stopRunning()    // stop capture session until tap
         
         // display an overlay and give quick vibration feedback
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
@@ -172,7 +173,31 @@ class BarcodeScanViewController: UIViewController {
     @IBAction func statisticsButton(_ sender: Any) {
         performSegue(withIdentifier: "statisticsSegue", sender: sender)
     }
+}
+
+extension BarcodeScanViewController: CheckLegiRequestDelegate {
     
+    func legiCheckSuccess(_ response: CheckOutResponse) {
+        DispatchQueue.main.async {
+            self.validLegi(message: response.message)
+        }
+    }
     
+    func legiCheckFailed(_ error: String, statusCode: Int) {
+        DispatchQueue.main.async {
+            self.invalidLegi(message: error)
+        }
+    }
+}
+
+extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
+    
+    func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
+        print("success")
+    }
+    
+    func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
+        print("Event Detial check failed")
+    }
 }
 

@@ -140,8 +140,6 @@
                         <outlet property="overlay" destination="c58-QZ-niz" id="KDi-m6-gwE"/>
                         <outlet property="regularCountLabel" destination="QQx-8C-WgI" id="BkO-DJ-wIr"/>
                         <outlet property="submitButton" destination="PUd-3n-i48" id="sDA-bd-uAv"/>
-                        <outlet property="successLabel" destination="zIw-6d-b2i" id="NMC-b8-Lp4"/>
-                        <outlet property="successOverlay" destination="c58-QZ-niz" id="TnY-aJ-aTT"/>
                         <segue destination="Amd-Th-7iR" kind="show" identifier="statisticsSegue" action="showDetailViewController:sender:" id="wkb-Yc-aPM"/>
                     </connections>
                 </viewController>
@@ -191,7 +189,7 @@
         <!--Navigation Controller-->
         <scene sceneID="wL8-mG-g39">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T0m-hf-kkV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BarcodeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="T0m-hf-kkV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="wgI-tz-mLv">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

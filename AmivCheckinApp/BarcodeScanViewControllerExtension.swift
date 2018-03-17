@@ -18,7 +18,9 @@ extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
-            self.foundBarcode(stringValue)
+            self.captureSession.stopRunning()
+            let checkin = Checkin()
+            checkin.check(stringValue, mode: .checkIn, delegate: self)
         }
     }
     
