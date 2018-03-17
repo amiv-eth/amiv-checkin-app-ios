@@ -10,6 +10,8 @@ import UIKit
 
 class StatisticsTableViewController: UITableViewController {
 
+    var eventDetail: EventDetail?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,11 +21,20 @@ class StatisticsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = eventDetail?.signups.count {
+            return count
+        }
         return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        
+        return cell
     }
 
 }
