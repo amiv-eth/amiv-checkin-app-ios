@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pinTextField: UITextField!
     
     @IBAction func settingsTapped(_ sender: Any) {
-        performSegue(withIdentifier: "SettingsSegue", sender: self)
+        performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,14 @@ class ViewController: UIViewController {
             let checkin = Checkin()
             checkin.check(pin, delegate: self)
         }
-        
     }
+    
+    @IBAction func websiteButtonTapped(_ sender: Any) {
+        if let url = URL(string: "http://checkin-dev.amiv.ethz.ch/") {
+            UIApplication.shared.open(url) {_ in }
+        }
+    }
+    
 }
 
 extension ViewController: CheckinPinResponseDelegate {
@@ -63,7 +69,12 @@ extension ViewController: CheckinPinResponseDelegate {
         }
     }
     
+
     func invalidPin(_ error: String, statusCode: Int) {
+        DispatchQueue.main.async {
+            self.pinTitleLabel.text = "Invalid PIN"
+            self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
+        }
         print("Code is invalid")
     }
     
