@@ -27,6 +27,8 @@ class BarcodeScanViewController: UIViewController {
     let captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     
+    var eventDetail: EventDetail?
+    
     // MARK: - Setup
     
     override func viewDidLoad() {
@@ -188,7 +190,8 @@ class BarcodeScanViewController: UIViewController {
     
     @IBAction func statisticsButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
-        let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController")
+        let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController") as! StatisticsTableViewController
+        statisticsViewController.eventDetail = self.eventDetail
         self.navigationController?.pushViewController(statisticsViewController, animated: true)
     }
 }
@@ -211,7 +214,7 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
 extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     
     func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
-        print("success")
+        self.eventDetail = eventDetail
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
