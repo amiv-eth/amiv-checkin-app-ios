@@ -152,13 +152,13 @@
         <!--Statistics-->
         <scene sceneID="eTS-HV-2UW">
             <objects>
-                <tableViewController storyboardIdentifier="StatisticsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Amd-Th-7iR" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StatisticsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Amd-Th-7iR" customClass="StatisticsTableViewController" customModule="AmivCheckinApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9K4-nO-S1P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="63" id="YsZ-xc-wzE">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="63" id="YsZ-xc-wzE" customClass="UserTableViewCell" customModule="AmivCheckinApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YsZ-xc-wzE" id="SAg-TB-56s">
@@ -204,6 +204,9 @@
                                         <constraint firstAttribute="trailing" secondItem="JCv-fd-eHT" secondAttribute="trailing" constant="20" id="rCc-3c-mkO"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="MNk-2O-bWg" id="tIV-0o-aS5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
