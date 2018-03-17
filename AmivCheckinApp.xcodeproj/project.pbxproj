@@ -13,6 +13,8 @@
 		B066E0AD205C825B00C86574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B066E0AC205C825B00C86574 /* Assets.xcassets */; };
 		B066E0B0205C825B00C86574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0AE205C825B00C86574 /* LaunchScreen.storyboard */; };
 		B066E0BB205C825B00C86574 /* AmivCheckinAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0BA205C825B00C86574 /* AmivCheckinAppTests.swift */; };
+		B066E0C6205C895800C86574 /* BarcodeScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */; };
+		B066E0CA205C974B00C86574 /* BarcodeScanViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B066E0B6205C825B00C86574 /* AmivCheckinAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmivCheckinAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B066E0BA205C825B00C86574 /* AmivCheckinAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmivCheckinAppTests.swift; sourceTree = "<group>"; };
 		B066E0BC205C825B00C86574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanViewController.swift; sourceTree = "<group>"; };
+		B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				B066E0AC205C825B00C86574 /* Assets.xcassets */,
 				B066E0AE205C825B00C86574 /* LaunchScreen.storyboard */,
 				B066E0B1205C825B00C86574 /* Info.plist */,
+				B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */,
+				B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */,
 			);
 			path = AmivCheckinApp;
 			sourceTree = "<group>";
@@ -199,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B066E0CA205C974B00C86574 /* BarcodeScanViewControllerExtension.swift in Sources */,
+				B066E0C6205C895800C86574 /* BarcodeScanViewController.swift in Sources */,
 				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 			);
