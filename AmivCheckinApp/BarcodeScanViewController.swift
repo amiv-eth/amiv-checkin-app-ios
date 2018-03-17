@@ -105,7 +105,7 @@ class BarcodeScanViewController: UIViewController {
     func foundBarcode(_ code: String) {
         debugPrint(code)
         
-        // determine whether valid barcode or not and go to invalidLegi/valicLegi accordingly
+        // determine whether valid barcode or not and go to invalidLegi/validLegi accordingly
         
     }
     
@@ -162,5 +162,13 @@ class BarcodeScanViewController: UIViewController {
         // restart scanning
         captureSession.startRunning()
     }
+    
+    // MARK: - Statistics View
+    
+    @IBAction func statisticsButton(_ sender: Any) {
+        performSegue(withIdentifier: "statisticsSegue", sender: sender)
+    }
+    
+    
 }
 
