@@ -9,13 +9,23 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate {
 
     var window: UIWindow?
 
-
+    func validPin() {
+        print("success")
+    }
+    
+    func invalidPin(_ error: String, statusCode: Int) {
+        print("unsuccessfull")
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let checkin = Checkin()
+        checkin.check("123456", delegate: self)
+        
         return true
     }
 
