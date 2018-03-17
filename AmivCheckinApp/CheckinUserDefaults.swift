@@ -41,6 +41,17 @@ public class CheckinUserDefaults {
         }
     }
     
+    private let eventPinKey: String = "eventKey"
+    
+    public var eventPin: String? {
+        get {
+            return self.userDefaults.string(forKey: self.eventPinKey)
+        }
+        set(value) {
+            self.userDefaults.set(value, forKey: self.eventPinKey)
+        }
+    }
+    
     public var autoRefresh: Bool {
         get {
             if self.userDefaults.string(forKey: self.autoRefreshKey) == nil {
@@ -54,12 +65,12 @@ public class CheckinUserDefaults {
         
     }
     
-    public var refreshFrequency: Float {
+    public var refreshFrequency: Double {
         get {
             if self.userDefaults.string(forKey: self.refreshFrequencyKey) == nil {
                 self.userDefaults.set(20.0, forKey: self.refreshFrequencyKey)
             }
-            return self.userDefaults.float(forKey: self.refreshFrequencyKey)
+            return self.userDefaults.double(forKey: self.refreshFrequencyKey)
         }
         set(value) {
             self.userDefaults.set(value, forKey: self.refreshFrequencyKey)

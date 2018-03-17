@@ -9,13 +9,44 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate, CheckLegiRequestDelegate, CheckEventDetailsRequestDelegate {
 
     var window: UIWindow?
+    
+    func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
+        print(eventDetail)
+    }
+    
+    func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
+        print(error, statusCode)
+    }
+    
+    func legiCheckSuccess(_ response: CheckOutResponse) {
+        print(response.message)
+        print(response.signup.email)
+        print(response)
+    }
+    
+    func legiCheckFailed(_ error: String, statusCode: Int) {
+        print(error, statusCode)
+    }
 
-
+    func validPin(_ message: String) {
+        print(message)
+        let checkin = Checkin()
+        checkin.check("S17948324", mode: .checkOut, delegate: self)
+        checkin.checkEventDetails(self)
+    }
+    
+    func invalidPin(_ error: String, statusCode: Int) {
+        print(error, statusCode)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let checkin = Checkin()
+        checkin.check("84538431", delegate: self)
+        
         return true
     }
 
