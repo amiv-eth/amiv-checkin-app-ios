@@ -42,7 +42,9 @@ class BarcodeScanViewController: UIViewController {
         image.isHidden = true
         
         // initialize tap gesture recognizer on overlay
-        _ = UITapGestureRecognizer(target: overlay, action: #selector(BarcodeScanViewController.overlayTapped(_:)))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.overlayTapped(_:)))
+        self.overlay.addGestureRecognizer(recognizer)
+        recognizer.numberOfTapsRequired = 1
     }
     
     func setupBarcodeScanning() {
@@ -82,7 +84,7 @@ class BarcodeScanViewController: UIViewController {
 
         previewLayer!.frame = self.view.layer.bounds
         previewLayer!.videoGravity = .resizeAspectFill
-        self.view.layer.insertSublayer(previewLayer!, below: self.manualInputTextField.layer)
+        self.view.layer.insertSublayer(previewLayer!, below: self.overlay.layer)
         
         debugPrint("Set up success")
     }
@@ -106,7 +108,7 @@ class BarcodeScanViewController: UIViewController {
         debugPrint(code)
         
         // determine whether valid barcode or not and go to invalidLegi/valicLegi accordingly
-        
+        self.invalidLegi(message: "Legi is invalid")
     }
     
     func setupFailed() {
@@ -134,6 +136,7 @@ class BarcodeScanViewController: UIViewController {
         // show overlay
         overlay.isHidden = false
         label.isHidden = false
+        image.isHidden = false
     }
     
     func invalidLegi(message: String) {
@@ -151,6 +154,7 @@ class BarcodeScanViewController: UIViewController {
         // show overlay
         overlay.isHidden = false
         label.isHidden = false
+        image.isHidden = false
     }
     
     @objc func overlayTapped(_ sender: UITapGestureRecognizer) {
