@@ -16,6 +16,7 @@
 		B0325EE7205D478700D46B60 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EE6205D478700D46B60 /* Statistics.swift */; };
 		B0325EE9205D4ED700D46B60 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EE8205D4ED700D46B60 /* EventDetail.swift */; };
 		B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EEA205D536800D46B60 /* EventInfos.swift */; };
+		B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */; };
 		B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A5205C825B00C86574 /* AppDelegate.swift */; };
 		B066E0A8205C825B00C86574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A7205C825B00C86574 /* ViewController.swift */; };
 		B066E0AB205C825B00C86574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0A9205C825B00C86574 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		B0325EE6205D478700D46B60 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		B0325EE8205D4ED700D46B60 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		B0325EEA205D536800D46B60 /* EventInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfos.swift; sourceTree = "<group>"; };
+		B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
 		B066E0A2205C825B00C86574 /* AmivCheckinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmivCheckinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B066E0A5205C825B00C86574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B066E0A7205C825B00C86574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				37B1A817205C9C7700A8F273 /* SettingsViewController.swift */,
 				B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */,
 				B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */,
+				B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */,
 			);
 			path = AmivCheckinApp;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */,
 				B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */,
 				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
+				B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 				37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */,
 				B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */,

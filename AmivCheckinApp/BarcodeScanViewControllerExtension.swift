@@ -20,7 +20,7 @@ extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
             guard let stringValue = readableObject.stringValue else { return }
             self.captureSession.stopRunning()
             let checkin = Checkin()
-            checkin.check(stringValue, mode: .checkIn, delegate: self)
+            checkin.check(stringValue, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
     

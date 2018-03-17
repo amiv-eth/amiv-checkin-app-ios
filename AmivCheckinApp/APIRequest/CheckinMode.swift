@@ -15,6 +15,21 @@ public enum CheckinMode {
     
 }
 
+extension CheckinMode {
+    
+    static func fromHash(_ value: Int) -> CheckinMode {
+        switch value {
+        case 0:
+            return .checkIn
+        case 1:
+            return .checkOut
+        default:
+            return .checkIn
+        }
+    }
+    
+}
+
 extension CheckinMode: CustomStringConvertible {
     
     public var description: String {

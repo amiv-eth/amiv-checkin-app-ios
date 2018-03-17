@@ -26,8 +26,8 @@ public class Checkin {
         
         let param = "pin=\(pin)"
         
-        //let url = apiUrl.appendingPathComponent("checkpin")
-        let url = URL(string: "http://10.0.1.6:5000/checkpin")!
+        let url = apiUrl.appendingPathComponent("checkpin")
+        //let url = URL(string: "http://10.0.1.6:5000/checkpin")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = param.data(using: .utf8)
@@ -55,8 +55,8 @@ public class Checkin {
         
         let param = "pin=\(pin)&checkmode=\(mode.description)&info=\(legi)"
         
-        //let url = apiUrl.appendingPathComponent("mutate")
-        let url = URL(string: "http://10.0.1.6:5000/mutate")!
+        let url = apiUrl.appendingPathComponent("mutate")
+        //let url = URL(string: "http://10.0.1.6:5000/mutate")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = param.data(using: .utf8)
@@ -87,8 +87,8 @@ public class Checkin {
         
         print(pin)
         
-        //let url = apiUrl.appendingPathComponent("mutate")
-        let url = URL(string: "http://10.0.1.6:5000/checkin_update_data")!
+        let url = apiUrl.appendingPathComponent("checkin_update_data")
+        //let url = URL(string: "http://10.0.1.6:5000/checkin_update_data")!
         var request = URLRequest(url: url)
         request.setValue(pin, forHTTPHeaderField: "pin")
         request.httpMethod = "GET"

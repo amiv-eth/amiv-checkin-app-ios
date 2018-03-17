@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         
         self.pinTitleLabel.text = "Enter pin"
         
-        let recognizer = UIGestureRecognizer(target: self, action: #selector(resignKeyboard))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(recognizer)
         
         self.setUpSubmitButton()

@@ -16,6 +16,8 @@ class BarcodeScanViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var manualInputTextField: UITextField!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var regularCountLabel: UILabel!
@@ -33,6 +35,9 @@ class BarcodeScanViewController: UIViewController {
         self.manualInputTextField.placeholder = "Legi #, email, or nethz"
         self.submitButtonSetup()
         
+        self.currentCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
+        self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
+        
         self.setupBarcodeScanning()
         captureSession.startRunning()
         
@@ -40,6 +45,9 @@ class BarcodeScanViewController: UIViewController {
         overlay.isHidden = true
         label.isHidden = true
         image.isHidden = true
+        
+        let keyboardRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.resignKeyboard))
+        self.view.addGestureRecognizer(keyboardRecognizer)
         
         // initialize tap gesture recognizer on overlay
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.overlayTapped(_:)))
@@ -94,7 +102,7 @@ class BarcodeScanViewController: UIViewController {
     
     func submitButtonSetup() {
         self.submitButton.setTitleColor(.white, for: .normal)
-        self.submitButton.layer.backgroundColor = UIColor.red.cgColor
+        self.submitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
         self.submitButton.layer.cornerRadius = 5
     }
     
@@ -102,7 +110,11 @@ class BarcodeScanViewController: UIViewController {
     
     @IBAction func SubmitButtonTapped(_ sender: Any) {
         self.manualInputTextField.resignFirstResponder()
-        debugPrint(self.manualInputTextField.text!)
+        
+        if let legi = self.manualInputTextField.text {
+            let checkin = Checkin()
+            checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
+        }
     }
     
     // MARK: - Barcode Handling
@@ -168,10 +180,16 @@ class BarcodeScanViewController: UIViewController {
         captureSession.startRunning()
     }
     
+    @objc func resignKeyboard() {
+        self.manualInputTextField.resignFirstResponder()
+    }
+    
     // MARK: - Statistics View
     
     @IBAction func statisticsButton(_ sender: Any) {
-        performSegue(withIdentifier: "statisticsSegue", sender: sender)
+        let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
+        let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController")
+        self.navigationController?.pushViewController(statisticsViewController, animated: true)
     }
 }
 

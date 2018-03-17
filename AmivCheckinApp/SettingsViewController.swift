@@ -28,6 +28,9 @@ class SettingsViewController: UIViewController {
         serverURL.text = userDefaults.urlAdress
         autoRefresh.isOn = (userDefaults.autoRefresh)
         refreshFrequency.text = String((userDefaults.refreshFrequency))
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.resignKeyboard))
+        self.view.addGestureRecognizer(recognizer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,5 +46,10 @@ class SettingsViewController: UIViewController {
         
         // exit via segue
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
+    }
+    
+    @objc func resignKeyboard() {
+        self.serverURL.resignFirstResponder()
+        self.refreshFrequency.resignFirstResponder()
     }
 }
