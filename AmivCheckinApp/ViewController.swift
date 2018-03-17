@@ -39,7 +39,6 @@ class ViewController: UIViewController {
     }
     
     @objc func resignKeyboard() {
-        print("resigned")
         self.pinTextField.resignFirstResponder()
     }
 
@@ -61,7 +60,6 @@ class ViewController: UIViewController {
 extension ViewController: CheckinPinResponseDelegate {
     
     func validPin(_ message: String) {
-        print("valid")
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
         let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeNavigationController")
         DispatchQueue.main.async {
@@ -75,7 +73,6 @@ extension ViewController: CheckinPinResponseDelegate {
             self.pinTitleLabel.text = "Invalid PIN"
             self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
         }
-        print("Code is invalid")
     }
     
 }

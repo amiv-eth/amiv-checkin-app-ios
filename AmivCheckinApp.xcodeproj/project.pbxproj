@@ -30,6 +30,8 @@
 		B066E0D1205CB13100C86574 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D0205CB13100C86574 /* Checkin.swift */; };
 		B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */; };
 		B09D18BC205D8AE900B52D74 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */; };
+		B09D18BE205D964200B52D74 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BD205D964200B52D74 /* EventType.swift */; };
+		B09D18C0205D9B6D00B52D74 /* UserMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BF205D9B6D00B52D74 /* UserMembership.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		B066E0D0205CB13100C86574 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinPinResponseDelegate.swift; sourceTree = "<group>"; };
 		B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		B09D18BD205D964200B52D74 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		B09D18BF205D9B6D00B52D74 /* UserMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMembership.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +152,11 @@
 				B0325EDC205D30B400D46B60 /* CheckinMode.swift */,
 				B0325EDE205D372700D46B60 /* CheckOutResponse.swift */,
 				B0325EE2205D473A00D46B60 /* User.swift */,
+				B09D18BF205D9B6D00B52D74 /* UserMembership.swift */,
 				B0325EE6205D478700D46B60 /* Statistics.swift */,
 				B0325EEA205D536800D46B60 /* EventInfos.swift */,
 				B0325EE8205D4ED700D46B60 /* EventDetail.swift */,
+				B09D18BD205D964200B52D74 /* EventType.swift */,
 			);
 			path = APIRequest;
 			sourceTree = "<group>";
@@ -269,9 +275,11 @@
 				B066E0C6205C895800C86574 /* BarcodeScanViewController.swift in Sources */,
 				B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */,
 				B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */,
+				B09D18C0205D9B6D00B52D74 /* UserMembership.swift in Sources */,
 				B09D18BC205D8AE900B52D74 /* UserTableViewCell.swift in Sources */,
 				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
 				B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */,
+				B09D18BE205D964200B52D74 /* EventType.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 				37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */,
 				B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */,

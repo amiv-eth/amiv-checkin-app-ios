@@ -12,7 +12,7 @@ public struct EventInfos: Codable {
     
     let _id: String
     let description: String
-    let event_type: String
+    let event_type: EventType
     let signup_count: Int
     let spots: Int?
     let time_started: String?
