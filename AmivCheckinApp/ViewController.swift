@@ -50,8 +50,10 @@ class ViewController: UIViewController {
         }
     }
     
+    
     @IBAction func websiteButtonTapped(_ sender: Any) {
-        if let url = URL(string: "http://checkin-dev.amiv.ethz.ch/") {
+        let userDefaults = CheckinUserDefaults()
+        if let url = URL(string: userDefaults.urlAdress) {
             UIApplication.shared.open(url) {_ in }
         }
     }

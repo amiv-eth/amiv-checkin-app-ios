@@ -15,9 +15,7 @@ class BarcodeScanViewController: UIViewController {
     // MARK: - IB Variables
     
     @IBOutlet weak var submitButton: UIButton!
-    
     @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var manualInputTextField: UITextField!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var regularCountLabel: UILabel!
@@ -186,7 +184,7 @@ class BarcodeScanViewController: UIViewController {
         self.manualInputTextField.resignFirstResponder()
     }
     
-    // MARK: - Statistics View
+    // MARK: - Statistics View Button
     
     @IBAction func statisticsButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)

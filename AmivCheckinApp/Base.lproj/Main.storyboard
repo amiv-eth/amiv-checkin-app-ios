@@ -19,10 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-fm-9ZB">
-                                <rect key="frame" x="10" y="354" width="355" height="38"/>
+                                <rect key="frame" x="10" y="354" width="355" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.8673216700553894" green="0.30346298217773438" blue="0.23524549603462219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="0.8666666666666667" green="0.30196078431372547" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="pinSubmitButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kRu-VZ-J6w"/>
@@ -42,9 +43,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-sM-aVE">
-                                <rect key="frame" x="159" y="553" width="56" height="30"/>
-                                <state key="normal" title="Website"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-sM-aVE">
+                                <rect key="frame" x="156" y="550" width="62" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Website">
+                                    <color key="titleColor" red="0.86666666670000003" green="0.30196078430000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="websiteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wkd-4F-Se3"/>
                                 </connections>
@@ -114,6 +118,7 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUC-gb-k8L">
                                 <rect key="frame" x="10" y="111" width="51" height="31"/>
+                                <color key="onTintColor" red="0.86666666670000003" green="0.30196078430000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </switch>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Seconds" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R8b-G6-ghy">
                                 <rect key="frame" x="10" y="203" width="355" height="30"/>

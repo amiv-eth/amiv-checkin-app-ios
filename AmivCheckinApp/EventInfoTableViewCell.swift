@@ -1,24 +1,15 @@
 //
-//  UserTableViewCell.swift
+//  EventInfoTableViewCell.swift
 //  AmivCheckinApp
 //
-//  Created by Domenic Wüthrich on 17.03.18.
+//  Created by Nicolas Vetsch on 17.03.18.
 //  Copyright © 2018 Domenic Wüthrich. All rights reserved.
 //
 
 import UIKit
 
-class UserTableViewCell: UITableViewCell {
+class EventInfoTableViewCell: UITableViewCell {
 
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var legiLabel: UILabel!
-    
-    @IBOutlet weak var statusLabel: UILabel!
-    
-    @IBOutlet weak var membershipStatusLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

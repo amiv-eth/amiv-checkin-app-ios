@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3726BBFD205DA01900A46D26 /* EventInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3726BBFC205DA01900A46D26 /* EventInfoTableViewCell.swift */; };
+		379201E3205D992300E1C0CB /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379201E2205D992300E1C0CB /* StatisticsTableViewCell.swift */; };
 		37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B1A817205C9C7700A8F273 /* SettingsViewController.swift */; };
 		B0325EDB205D2F7100D46B60 /* CheckLegiRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */; };
 		B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EDC205D30B400D46B60 /* CheckinMode.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3726BBFC205DA01900A46D26 /* EventInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoTableViewCell.swift; sourceTree = "<group>"; };
+		379201E2205D992300E1C0CB /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
 		37B1A817205C9C7700A8F273 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLegiRequestDelegate.swift; sourceTree = "<group>"; };
 		B0325EDC205D30B400D46B60 /* CheckinMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinMode.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */,
 				B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */,
 				B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */,
+				379201E2205D992300E1C0CB /* StatisticsTableViewCell.swift */,
+				3726BBFC205DA01900A46D26 /* EventInfoTableViewCell.swift */,
 			);
 			path = AmivCheckinApp;
 			sourceTree = "<group>";
@@ -275,7 +281,9 @@
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 				37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */,
 				B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */,
+				3726BBFD205DA01900A46D26 /* EventInfoTableViewCell.swift in Sources */,
 				B0325EE7205D478700D46B60 /* Statistics.swift in Sources */,
+				379201E3205D992300E1C0CB /* StatisticsTableViewCell.swift in Sources */,
 				B0325EDF205D372700D46B60 /* CheckOutResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
