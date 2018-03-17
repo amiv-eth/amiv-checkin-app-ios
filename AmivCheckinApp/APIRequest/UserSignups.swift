@@ -1,5 +1,5 @@
 //
-//  CheckOutResponse.swift
+//  UserSignups.swift
 //  AmivCheckinApp
 //
 //  Created by Domenic Wüthrich on 17.03.18.
@@ -7,10 +7,3 @@
 //
 
 import Foundation
-
-public struct CheckOutResponse: Codable {
-    
-    let message: String
-    let signup: User
-    
-}

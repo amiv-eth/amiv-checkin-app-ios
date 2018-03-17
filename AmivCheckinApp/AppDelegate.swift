@@ -9,13 +9,22 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate, CheckLegiRequestDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate, CheckLegiRequestDelegate, CheckEventDetailsRequestDelegate {
 
     var window: UIWindow?
+    
+    func eventDetailsCheckSuccess() {
+        print("success")
+    }
+    
+    func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
+        print(error, statusCode)
+    }
     
     func legiCheckSuccess(_ response: CheckOutResponse) {
         print(response.message)
         print(response.signup.email)
+        print(response)
     }
     
     func legiCheckFailed(_ error: String, statusCode: Int) {
@@ -26,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegat
         print(message)
         let checkin = Checkin()
         checkin.check("S17948324", mode: .checkIn, delegate: self)
+        checkin.checkEventDetails(self)
     }
     
     func invalidPin(_ error: String, statusCode: Int) {

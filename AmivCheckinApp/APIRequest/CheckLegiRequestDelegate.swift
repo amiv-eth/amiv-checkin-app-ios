@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CheckLegiRequestDelegate {
+public protocol CheckLegiRequestDelegate {
     
     func legiCheckSuccess(_ response: CheckOutResponse)
     func legiCheckFailed(_ error: String, statusCode: Int)
