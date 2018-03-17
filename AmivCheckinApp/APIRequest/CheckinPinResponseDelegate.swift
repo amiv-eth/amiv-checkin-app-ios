@@ -10,7 +10,7 @@ import Foundation
 
 public protocol CheckinPinResponseDelegate {
     
-    func validPin()
+    func validPin(_ message: String)
     func invalidPin(_ error: String, statusCode: Int)
     
 }

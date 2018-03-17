@@ -20,42 +20,26 @@ public class Checkin {
     
     func check(_ pin: String, delegate: CheckinPinResponseDelegate) {
         
-        let parameters = ["pin": pin]
+        let param = "pin=\(pin)"
         
-        let url = apiUrl.appendingPathComponent("checkpin")
+        //let url = apiUrl.appendingPathComponent("checkpin")
+        let url = URL(string: "http://10.0.1.6:5000/checkpin")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
-        print("request: ", request)
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        request.httpBody = param.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { return }
             
-            guard let status = response as? HTTPURLResponse else { return }
+            guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
-            let json: [String: Any]
-            do {
-                json = (try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any])!
-            } catch let error {
-                print(error.localizedDescription)
-                return
-            }
-            print(json)
             if status.statusCode != 200 {
-                delegate.invalidPin(String(describing: json), statusCode: status.statusCode)
+                delegate.invalidPin(message, statusCode: status.statusCode)
             } else {
-                delegate.validPin()
+                delegate.validPin(message)
             }
         }
         task.resume()
-        
-        
     }
     
 }

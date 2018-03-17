@@ -13,18 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegat
 
     var window: UIWindow?
 
-    func validPin() {
-        print("success")
+    func validPin(_ message: String) {
+        print(message)
     }
     
     func invalidPin(_ error: String, statusCode: Int) {
-        print("unsuccessfull")
+        print(error, statusCode)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let checkin = Checkin()
-        checkin.check("123456", delegate: self)
+        checkin.check("84538431", delegate: self)
         
         return true
     }
