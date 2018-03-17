@@ -9,12 +9,23 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegate, CheckLegiRequestDelegate {
 
     var window: UIWindow?
+    
+    func legiCheckSuccess(_ response: CheckOutResponse) {
+        print(response.message)
+        print(response.signup.email)
+    }
+    
+    func legiCheckFailed(_ error: String, statusCode: Int) {
+        print(error, statusCode)
+    }
 
     func validPin(_ message: String) {
         print(message)
+        let checkin = Checkin()
+        checkin.check("S17948324", mode: .checkIn, delegate: self)
     }
     
     func invalidPin(_ error: String, statusCode: Int) {

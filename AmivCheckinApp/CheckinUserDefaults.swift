@@ -41,6 +41,17 @@ public class CheckinUserDefaults {
         }
     }
     
+    private let eventPinKey: String = "eventKey"
+    
+    public var eventPin: String? {
+        get {
+            return self.userDefaults.string(forKey: self.eventPinKey)
+        }
+        set(value) {
+            self.userDefaults.set(value, forKey: self.eventPinKey)
+        }
+    }
+    
     public var autoRefresh: Bool {
         get {
             if self.userDefaults.string(forKey: self.autoRefreshKey) == nil {

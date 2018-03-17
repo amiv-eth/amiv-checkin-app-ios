@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B1A817205C9C7700A8F273 /* SettingsViewController.swift */; };
+		B0325EDB205D2F7100D46B60 /* CheckLegiRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */; };
+		B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EDC205D30B400D46B60 /* CheckinMode.swift */; };
+		B0325EDF205D372700D46B60 /* CheckOutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EDE205D372700D46B60 /* CheckOutResponse.swift */; };
 		B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A5205C825B00C86574 /* AppDelegate.swift */; };
 		B066E0A8205C825B00C86574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A7205C825B00C86574 /* ViewController.swift */; };
 		B066E0AB205C825B00C86574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0A9205C825B00C86574 /* Main.storyboard */; };
@@ -19,7 +22,6 @@
 		B066E0CC205CA95200C86574 /* CheckinUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0CB205CA95200C86574 /* CheckinUserDefaults.swift */; };
 		B066E0CE205CAD6900C86574 /* Barcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0CD205CAD6900C86574 /* Barcode.storyboard */; };
 		B066E0D1205CB13100C86574 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D0205CB13100C86574 /* Checkin.swift */; };
-		B066E0D3205CB26700C86574 /* CheckinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D2205CB26700C86574 /* CheckinResponse.swift */; };
 		B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		37B1A817205C9C7700A8F273 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLegiRequestDelegate.swift; sourceTree = "<group>"; };
+		B0325EDC205D30B400D46B60 /* CheckinMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinMode.swift; sourceTree = "<group>"; };
+		B0325EDE205D372700D46B60 /* CheckOutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutResponse.swift; sourceTree = "<group>"; };
 		B066E0A2205C825B00C86574 /* AmivCheckinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmivCheckinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B066E0A5205C825B00C86574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B066E0A7205C825B00C86574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +55,6 @@
 		B066E0CB205CA95200C86574 /* CheckinUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinUserDefaults.swift; sourceTree = "<group>"; };
 		B066E0CD205CAD6900C86574 /* Barcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Barcode.storyboard; sourceTree = "<group>"; };
 		B066E0D0205CB13100C86574 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
-		B066E0D2205CB26700C86574 /* CheckinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinResponse.swift; sourceTree = "<group>"; };
 		B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinPinResponseDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,8 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				B066E0D0205CB13100C86574 /* Checkin.swift */,
-				B066E0D2205CB26700C86574 /* CheckinResponse.swift */,
 				B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */,
+				B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */,
+				B0325EDC205D30B400D46B60 /* CheckinMode.swift */,
+				B0325EDE205D372700D46B60 /* CheckOutResponse.swift */,
 			);
 			path = APIRequest;
 			sourceTree = "<group>";
@@ -232,15 +238,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0325EDB205D2F7100D46B60 /* CheckLegiRequestDelegate.swift in Sources */,
 				B066E0CA205C974B00C86574 /* BarcodeScanViewControllerExtension.swift in Sources */,
 				B066E0CC205CA95200C86574 /* CheckinUserDefaults.swift in Sources */,
 				B066E0D1205CB13100C86574 /* Checkin.swift in Sources */,
 				B066E0C6205C895800C86574 /* BarcodeScanViewController.swift in Sources */,
-				B066E0D3205CB26700C86574 /* CheckinResponse.swift in Sources */,
+				B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */,
 				B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */,
 				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 				37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */,
+				B0325EDF205D372700D46B60 /* CheckOutResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
