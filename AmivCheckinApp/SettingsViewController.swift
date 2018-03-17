@@ -10,32 +10,38 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    // creating instance of userDefaults
+    var userDefaults = CheckinUserDefaults()
+    
+    @IBOutlet weak var serverURL: UITextField!
+    
+    @IBOutlet weak var autoRefresh: UISwitch!
+    
+    @IBOutlet weak var refreshFrequency: UITextField!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // set up the userDefaults
+        serverURL.text = userDefaults.urlAdress
+        autoRefresh.isOn = (userDefaults.autoRefresh)
+        refreshFrequency.text = String((userDefaults.refreshFrequency))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func doneButtonTapped(_ sender: Any) {
         // save settings
+        userDefaults.urlAdress = serverURL.text!
+        userDefaults.autoRefresh = autoRefresh.isOn
+        userDefaults.refreshFrequency = Float(refreshFrequency.text!)!
         
+        // exit via segue
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
