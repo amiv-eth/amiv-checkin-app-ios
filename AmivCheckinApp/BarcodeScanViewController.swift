@@ -35,6 +35,14 @@ class BarcodeScanViewController: UIViewController {
         
         self.setupBarcodeScanning()
         captureSession.startRunning()
+        
+        // hide the feedback overlay
+        overlay.isHidden = true
+        label.isHidden = true
+        image.isHidden = true
+        
+        // initialize tap gesture recognizer on overlay
+        _ = UITapGestureRecognizer(target: overlay, action: #selector(BarcodeScanViewController.overlayTapped(_:)))
     }
     
     func setupBarcodeScanning() {
@@ -97,21 +105,62 @@ class BarcodeScanViewController: UIViewController {
     func foundBarcode(_ code: String) {
         debugPrint(code)
         
-        // user feedback (vibrate and message)
-        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        // determine whether valid barcode or not and go to invalidLegi/valicLegi accordingly
         
-        let alert = UIAlertController(title: "Barcode detected: ", message: code, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-        }))
-        self.present(alert, animated: true, completion: nil)
-
     }
     
     func setupFailed() {
         debugPrint("Failed to set up barcode scanning")
     }
     
+    // Overlays for success and failure
+    //
+    @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    
+    func validLegi(message: String) {
+        captureSession.stopRunning()    // stop capture session until tap
+        
+        // display an overlay and give quick vibration feedback
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        // configure for success
+        label.text = message
+        label.textColor = #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1)
+        overlay.tintColor = #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2)
+        image.image = #imageLiteral(resourceName: "green_check")
+        
+        // show overlay
+        overlay.isHidden = false
+        label.isHidden = false
+    }
+    
+    func invalidLegi(message: String) {
+        captureSession.stopRunning()    // stop capture session until tap
+        
+        // display an overlay and give quick vibration feedback
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        // configure for success
+        label.text = message
+        label.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+        overlay.tintColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2)
+        image.image = #imageLiteral(resourceName: "red_cross")
+        
+        // show overlay
+        overlay.isHidden = false
+        label.isHidden = false
+    }
+    
+    @objc func overlayTapped(_ sender: UITapGestureRecognizer) {
+        // hide overlay
+        overlay.isHidden = true
+        label.isHidden = true
+        image.isHidden = true
+        
+        // restart scanning
+        captureSession.startRunning()
+    }
 }
 
