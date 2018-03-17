@@ -25,15 +25,15 @@ public class CheckinUserDefaults {
      First time opening the app
      
      */
-    public var urlAdress: Bool {
+    public var urlAdress: String {
         get {
-            if self.userDefaults?.string(forKey: self.urlAdressKey) == nil {
-                self.userDefaults?.set("https://checkin.amiv.ethz.ch", forKey: self.urlAdressKey)
+            if self.userDefaults.string(forKey: self.urlAdressKey) == nil {
+                self.userDefaults.set("https://checkin.amiv.ethz.ch", forKey: self.urlAdressKey)
             }
-            return (self.userDefaults?.string(forKey: self.urlAdressKey))!
+            return self.userDefaults.string(forKey: self.urlAdressKey)!
         }
         set(value) {
-            self.userDefaults?.set(value, forKey: self.urlAdressKey)
+            self.userDefaults.set(value, forKey: self.urlAdressKey)
         }
     }
     
