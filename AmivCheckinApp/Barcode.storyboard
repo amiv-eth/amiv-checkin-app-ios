@@ -134,7 +134,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentCountLabel" destination="hOf-cN-Ijp" id="qRv-dy-8X2"/>
-                        <outlet property="greenOverlay" destination="c58-QZ-niz" id="NSY-Hj-SOf"/>
                         <outlet property="image" destination="3M4-gJ-Xrf" id="6fb-9r-uZk"/>
                         <outlet property="label" destination="zIw-6d-b2i" id="s14-gj-ft6"/>
                         <outlet property="manualInputTextField" destination="DFL-IO-Npe" id="Fh8-Vi-jWf"/>
