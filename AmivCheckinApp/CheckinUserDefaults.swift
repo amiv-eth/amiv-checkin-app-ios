@@ -21,6 +21,10 @@ public class CheckinUserDefaults {
      */
     private let urlAdressKey = "urlAdress"
     
+    private let autoRefreshKey = "autoRefresh"
+    
+    private let refreshFrequencyKey = "refreshFrequency"
+    
     /**
      First time opening the app
      
@@ -35,6 +39,32 @@ public class CheckinUserDefaults {
         set(value) {
             self.userDefaults.set(value, forKey: self.urlAdressKey)
         }
+    }
+    
+    public var autoRefresh: Bool {
+        get {
+            if self.userDefaults.string(forKey: self.autoRefreshKey) == nil {
+                self.userDefaults.set(true, forKey: self.autoRefreshKey)
+            }
+            return self.userDefaults.bool(forKey: self.autoRefreshKey)
+        }
+        set(value) {
+            self.userDefaults.set(value, forKey: self.autoRefreshKey)
+        }
+        
+    }
+    
+    public var refreshFrequency: Float {
+        get {
+            if self.userDefaults.string(forKey: self.refreshFrequencyKey) == nil {
+                self.userDefaults.set(20.0, forKey: self.refreshFrequencyKey)
+            }
+            return self.userDefaults.float(forKey: self.refreshFrequencyKey)
+        }
+        set(value) {
+            self.userDefaults.set(value, forKey: self.refreshFrequencyKey)
+        }
+        
     }
     
 }

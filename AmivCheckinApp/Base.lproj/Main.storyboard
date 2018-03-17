@@ -159,6 +159,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="autoRefresh" destination="oUC-gb-k8L" id="OdH-AB-KNo"/>
+                        <outlet property="refreshFrequency" destination="R8b-G6-ghy" id="zv0-uk-xaW"/>
+                        <outlet property="serverURL" destination="r4Z-2q-eHD" id="f6B-5U-Ee6"/>
                         <segue destination="Ist-9W-5zi" kind="unwind" identifier="unwindToMain" unwindAction="unwindToMainWithSegue:" id="XIi-Jz-2sJ"/>
                     </connections>
                 </viewController>
