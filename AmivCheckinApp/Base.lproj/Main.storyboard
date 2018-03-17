@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--AMIV Check-in-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AmivCheckinApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,39 +19,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-fm-9ZB">
-                                <rect key="frame" x="164.5" y="368" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="159.5" y="368" width="56" height="30"/>
+                                <state key="normal" title="SUBMIT"/>
                                 <connections>
                                     <action selector="pinSubmitButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kRu-VZ-J6w"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Dz-Sb-v9G">
-                                <rect key="frame" x="10" y="318" width="355" height="30"/>
-                                <nil key="textColor"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PIN" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Dz-Sb-v9G">
+                                <rect key="frame" x="10" y="318.5" width="355" height="30"/>
+                                <color key="textColor" red="0.65875023603439331" green="0.65886574983596802" blue="0.65874296426773071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOD-7J-xum">
-                                <rect key="frame" x="166.5" y="277" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enter Event PIN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOD-7J-xum">
+                                <rect key="frame" x="126" y="277" width="123.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="amiv_logo" translatesAutoresizingMaskIntoConstraints="NO" id="8WR-5S-5MF">
+                                <rect key="frame" x="10" y="84" width="355" height="173"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Er-l1-HcK">
+                                <rect key="frame" x="10" y="617" width="355" height="30"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <action selector="settingsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B9j-5m-4aS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="1D3-Ce-iIT"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="3bh-Is-cMa"/>
+                            <constraint firstItem="9Er-l1-HcK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="7Jp-kR-MfN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Dz-Sb-v9G" secondAttribute="trailing" constant="10" id="7gc-vL-6UL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cjh-fm-9ZB" secondAttribute="trailing" constant="10" id="BZU-Ld-Q8p"/>
+                            <constraint firstItem="8WR-5S-5MF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D7G-Ln-PD0"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DIq-wu-WID"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8WR-5S-5MF" secondAttribute="trailing" constant="10" id="FtM-Uy-6fO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Er-l1-HcK" secondAttribute="bottom" constant="20" id="GVa-MY-kwe"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="I1f-Ah-CSE"/>
+                            <constraint firstItem="8WR-5S-5MF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Lku-Uf-8e1"/>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M9m-0M-I4o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IOD-7J-xum" secondAttribute="trailing" constant="10" id="YXE-zO-tV8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Er-l1-HcK" secondAttribute="trailing" constant="10" id="aHm-O0-G16"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="top" secondItem="4Dz-Sb-v9G" secondAttribute="bottom" constant="20" id="aMk-IW-eDj"/>
+                            <constraint firstItem="8WR-5S-5MF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="aYo-B7-Mqz"/>
+                            <constraint firstItem="9Er-l1-HcK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mdK-T7-O9V"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="od3-Y1-JFy"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xMk-HR-zaV"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="top" secondItem="IOD-7J-xum" secondAttribute="bottom" constant="20" id="xSX-Rq-v8k"/>
+                            <constraint firstItem="IOD-7J-xum" firstAttribute="top" secondItem="8WR-5S-5MF" secondAttribute="bottom" constant="20" id="zSx-V1-XaE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -60,6 +79,7 @@
                         <outlet property="pinSubmitButton" destination="cjh-fm-9ZB" id="yoQ-sE-ZeI"/>
                         <outlet property="pinTextField" destination="4Dz-Sb-v9G" id="LHA-Hz-smY"/>
                         <outlet property="pinTitleLabel" destination="IOD-7J-xum" id="KNP-9C-JKc"/>
+                        <segue destination="kmw-JM-X5h" kind="showDetail" identifier="SettingsSegue" action="showViewController:sender:" id="2Ke-2p-PEP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -67,4 +87,7 @@
             <point key="canvasLocation" x="476" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="amiv_logo" width="1024" height="314"/>
+    </resources>
 </document>
