@@ -15,7 +15,7 @@ public struct User: Codable {
     let firstname: String
     let lastname: String
     let legi: String
-    let membership: String
+    let membership: UserMembership
     let nethz: String
     let signup_id: Int
     let user_id: String
