@@ -1,5 +1,5 @@
 //
-//  Statistics.swift
+//  EventDetail.swift
 //  AmivCheckinApp
 //
 //  Created by Domenic Wüthrich on 17.03.18.
@@ -8,9 +8,10 @@
 
 import Foundation
 
-public struct Statistics: Codable {
+public struct EventDetail: Codable {
     
-    let key: String
-    let value: Int
+    let eventinfos: EventInfos
+    let signups: [User]
+    let statistics: [Statistics]
     
 }

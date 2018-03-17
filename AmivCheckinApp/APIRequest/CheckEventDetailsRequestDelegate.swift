@@ -10,7 +10,7 @@ import Foundation
 
 public protocol CheckEventDetailsRequestDelegate {
     
-    func eventDetailsCheckSuccess()
+    func eventDetailsCheckSuccess(_ eventDetail: EventDetail)
     func eventDetailsCheckFailed(_ error: String, statusCode: Int)
     
 }

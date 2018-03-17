@@ -39,7 +39,7 @@ class SettingsViewController: UIViewController {
         // save settings
         userDefaults.urlAdress = serverURL.text!
         userDefaults.autoRefresh = autoRefresh.isOn
-        userDefaults.refreshFrequency = Float(refreshFrequency.text!)!
+        userDefaults.refreshFrequency = Double(refreshFrequency.text!)!
         
         // exit via segue
         self.performSegue(withIdentifier: "unwindToMain", sender: self)

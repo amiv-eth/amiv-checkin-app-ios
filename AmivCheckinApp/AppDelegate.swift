@@ -13,8 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegat
 
     var window: UIWindow?
     
-    func eventDetailsCheckSuccess() {
-        print("success")
+    func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
+        print(eventDetail)
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CheckinPinResponseDelegat
     func validPin(_ message: String) {
         print(message)
         let checkin = Checkin()
-        checkin.check("S17948324", mode: .checkIn, delegate: self)
+        checkin.check("S17948324", mode: .checkOut, delegate: self)
         checkin.checkEventDetails(self)
     }
     

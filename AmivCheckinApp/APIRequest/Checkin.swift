@@ -11,11 +11,15 @@ import Foundation
 public class Checkin {
     
     private let apiUrl: URL
+    private var periodicUpdate: Bool
+    private let userDefaults: CheckinUserDefaults
 
     public init() {
         let userDefaults = CheckinUserDefaults()
+        self.userDefaults = userDefaults
         let url = URL(string: userDefaults.urlAdress)
         self.apiUrl = url!
+        self.periodicUpdate = userDefaults.autoRefresh
     }
     
     public func check(_ pin: String, delegate: CheckinPinResponseDelegate) {
@@ -36,8 +40,7 @@ public class Checkin {
             if status.statusCode != 200 {
                 delegate.invalidPin(message, statusCode: status.statusCode)
             } else {
-                let defaults = CheckinUserDefaults()
-                defaults.eventPin = pin
+                self.userDefaults.eventPin = pin
                 
                 delegate.validPin(message)
                 
@@ -48,8 +51,7 @@ public class Checkin {
     
     public func check(_ legi: String, mode: CheckinMode, delegate: CheckLegiRequestDelegate) {
         
-        let defaults = CheckinUserDefaults()
-        guard let pin = defaults.eventPin else { return }
+        guard let pin = self.userDefaults.eventPin else { return }
         
         let param = "pin=\(pin)&checkmode=\(mode.description)&info=\(legi)"
         
@@ -81,8 +83,7 @@ public class Checkin {
     }
     
     public func checkEventDetails(_ delegate: CheckEventDetailsRequestDelegate) {
-        let defaults = CheckinUserDefaults()
-        guard let pin = defaults.eventPin else { return }
+        guard let pin = self.userDefaults.eventPin else { return }
         
         print(pin)
         
@@ -102,20 +103,29 @@ public class Checkin {
                 delegate.eventDetailsCheckFailed(message, statusCode: status.statusCode)
             } else {
                 do {
-                    print(message)
-                    /*
                     let decoder = JSONDecoder()
-                    let json = try decoder.decode(CheckOutResponse.self, from: data)
-                    delegate.legiCheckSuccess(json)
- */
-                } catch {
+                    let json = try decoder.decode(EventDetail.self, from: data)
+                    delegate.eventDetailsCheckSuccess(json)
+                } catch let error {
                     print("Error parsing json: ", message)
+                    print(error)
                 }
-                
             }
         }
         task.resume()
-
+    }
+    
+    public func startPeriodicUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
+        guard self.periodicUpdate else { return }
+        let queue = DispatchQueue.global(qos: .background)
+        self.checkEventDetails(delegate)
+        queue.asyncAfter(deadline: DispatchTime.now() + self.userDefaults.refreshFrequency) {
+            self.startPeriodicUpdate(delegate)
+        }
+    }
+    
+    public func stopPeriodicUpdate() {
+        self.periodicUpdate = false
     }
     
 }
