@@ -112,10 +112,11 @@ public class Checkin {
     }
     
     public func startPeriodicUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
-        guard self.periodicUpdate else { return }
+        guard self.userDefaults.autoRefresh else { return }
+        self.periodicUpdate = true
         let queue = DispatchQueue.global(qos: .background)
         self.checkEventDetails(delegate)
-        queue.asyncAfter(deadline: DispatchTime.now() + self.userDefaults.refreshFrequency) {
+        queue.asyncAfter(deadline: DispatchTime.now() + Double(self.userDefaults.refreshFrequency)) {
             self.startPeriodicUpdate(delegate)
         }
     }

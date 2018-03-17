@@ -19,16 +19,25 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var manualInputTextField: UITextField!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var regularCountLabel: UILabel!
+    @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
     // Variables
     
     let captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     
+    let checkin = Checkin()
+    
     var eventDetail: EventDetail? {
         didSet {
-            self.currentCountLabel.text = String(describing: eventDetail?.statistics.first?.value)
-            self.regularCountLabel.text = String(describing: eventDetail?.statistics[1].value)
+            DispatchQueue.main.async {
+                if let first = self.eventDetail?.statistics.first?.value, let second = self.eventDetail?.statistics[1].value {
+                    self.currentCountLabel.text = String(describing: first)
+                    self.regularCountLabel.text = String(describing: second)
+                }
+            }
         }
     }
     
@@ -61,8 +70,17 @@ class BarcodeScanViewController: UIViewController {
         self.overlay.addGestureRecognizer(recognizer)
         recognizer.numberOfTapsRequired = 1
         
-        let checkin = Checkin()
-        checkin.startPeriodicUpdate(self)
+        self.checkin.startPeriodicUpdate(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.checkin.startPeriodicUpdate(self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.checkin.stopPeriodicUpdate()
     }
     
     func setupBarcodeScanning() {
@@ -119,8 +137,7 @@ class BarcodeScanViewController: UIViewController {
         self.manualInputTextField.resignFirstResponder()
         
         if let legi = self.manualInputTextField.text {
-            let checkin = Checkin()
-            checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
+            self.checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
     
@@ -137,20 +154,6 @@ class BarcodeScanViewController: UIViewController {
         debugPrint("Failed to set up barcode scanning")
     }
     
-    // Overlays for success and failure
-    //
-    @IBOutlet weak var overlay: UIView!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    
-    func validLegi(message: String) {
-        self.configureOverlay(message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"))
-    }
-    
-    func invalidLegi(message: String) {
-        self.configureOverlay(message, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"))
-    }
-    
     func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage) {
         // display an overlay and give quick vibration feedback
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
@@ -158,7 +161,7 @@ class BarcodeScanViewController: UIViewController {
         // configure for success
         label.text = message
         label.textColor = textColor
-        overlay.tintColor = overlayTint
+        overlay.backgroundColor = overlayTint
         self.image.image = image
         
         // show overlay
@@ -195,10 +198,10 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
     
     func legiCheckSuccess(_ response: CheckOutResponse) {
         DispatchQueue.main.async {
+            self.checkin.checkEventDetails(self)
             switch response.signup.membership {
             case .extraordinary, .honorary:
-                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.9609039426, green: 0.6258733273, blue: 0.3316327631, alpha: 1), image: #imageLiteral(resourceName: "green_check"))
-                self.image.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+                self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"))
             case .regular:
                 self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"))
             case .none:

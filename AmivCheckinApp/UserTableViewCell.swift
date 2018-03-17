@@ -29,5 +29,12 @@ class UserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func config(_ user: User) {
+        self.nameLabel.text = user.firstname + " " + user.lastname
+        self.legiLabel.text = user.legi
+        self.statusLabel.text = user.checked_in.description
+        self.membershipStatusLabel.text = user.membership.description
+    }
 
 }

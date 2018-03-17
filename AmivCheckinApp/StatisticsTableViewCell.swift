@@ -10,19 +10,26 @@ import UIKit
 
 class StatisticsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var keyLabel: NSLayoutConstraint!
-    
+    @IBOutlet weak var keyLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        self.keyLabel.numberOfLines = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func config(_ statistic: Statistics) {
+        self.keyLabel.text = statistic.key
+        self.valueLabel.text = String(describing: statistic.value)
     }
 
 }

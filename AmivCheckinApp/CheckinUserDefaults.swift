@@ -65,12 +65,12 @@ public class CheckinUserDefaults {
         
     }
     
-    public var refreshFrequency: Double {
+    public var refreshFrequency: Int {
         get {
             if self.userDefaults.string(forKey: self.refreshFrequencyKey) == nil {
-                self.userDefaults.set(20.0, forKey: self.refreshFrequencyKey)
+                self.userDefaults.set(20, forKey: self.refreshFrequencyKey)
             }
-            return self.userDefaults.double(forKey: self.refreshFrequencyKey)
+            return self.userDefaults.integer(forKey: self.refreshFrequencyKey)
         }
         set(value) {
             self.userDefaults.set(value, forKey: self.refreshFrequencyKey)

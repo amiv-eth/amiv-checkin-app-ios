@@ -39,10 +39,13 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func doneButtonTapped(_ sender: Any) {
-        // save settings
-        userDefaults.urlAdress = serverURL.text!
-        userDefaults.autoRefresh = autoRefresh.isOn
-        userDefaults.refreshFrequency = Double(refreshFrequency.text!)!
+        
+        if let url = self.serverURL.text, let freq = self.refreshFrequency.text, let frequency = Int(freq) {
+            // save settings
+            userDefaults.urlAdress = url
+            userDefaults.autoRefresh = autoRefresh.isOn
+            userDefaults.refreshFrequency = frequency
+        }
         
         // exit via segue
         self.performSegue(withIdentifier: "unwindToMain", sender: self)

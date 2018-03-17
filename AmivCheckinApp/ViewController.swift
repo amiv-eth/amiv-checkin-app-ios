@@ -76,6 +76,5 @@ extension ViewController: CheckinPinResponseDelegate {
             self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
         }
     }
-    
 }
 

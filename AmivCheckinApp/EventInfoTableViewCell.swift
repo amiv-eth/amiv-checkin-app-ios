@@ -10,15 +10,19 @@ import UIKit
 
 class EventInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var keyLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        self.keyLabel.numberOfLines = 0
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func config(_ key: String, value: String) {
+        self.keyLabel.text = key
+        self.valueLabel.text = value
     }
-
 }
