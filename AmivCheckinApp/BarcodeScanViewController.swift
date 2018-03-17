@@ -30,7 +30,7 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.manualInputTextField.placeholder = "Legi Nr., Email, ..."
+        self.manualInputTextField.placeholder = "Legi #, email, or nethz"
         self.submitButtonSetup()
         
         self.setupBarcodeScanning()
@@ -54,7 +54,7 @@ class BarcodeScanViewController: UIViewController {
         if (captureSession.canAddInput(videoInput)) {
             captureSession.addInput(videoInput)
         } else {
-            //failed()
+            setupFailed()
             return
         }
         
@@ -66,7 +66,7 @@ class BarcodeScanViewController: UIViewController {
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.code39]
         } else {
-            //failed()
+            setupFailed()
             return
         }
         
@@ -88,13 +88,14 @@ class BarcodeScanViewController: UIViewController {
     // MARK: - View functions
     
     @IBAction func SubmitButtonTapped(_ sender: Any) {
+        self.manualInputTextField.resignFirstResponder()
         debugPrint(self.manualInputTextField.text!)
     }
     
     // MARK: - Barcode Handling
     
     func foundBarcode(_ code: String) {
-        print(code)
+        debugPrint(code)
     }
     
     func setupFailed() {
