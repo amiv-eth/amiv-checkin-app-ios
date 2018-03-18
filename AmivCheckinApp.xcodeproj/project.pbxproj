@@ -20,7 +20,7 @@
 		B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EEA205D536800D46B60 /* EventInfos.swift */; };
 		B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */; };
 		B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A5205C825B00C86574 /* AppDelegate.swift */; };
-		B066E0A8205C825B00C86574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A7205C825B00C86574 /* ViewController.swift */; };
+		B066E0A8205C825B00C86574 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0A7205C825B00C86574 /* MainViewController.swift */; };
 		B066E0AB205C825B00C86574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0A9205C825B00C86574 /* Main.storyboard */; };
 		B066E0AD205C825B00C86574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B066E0AC205C825B00C86574 /* Assets.xcassets */; };
 		B066E0B0205C825B00C86574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0AE205C825B00C86574 /* LaunchScreen.storyboard */; };
@@ -64,7 +64,7 @@
 		B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
 		B066E0A2205C825B00C86574 /* AmivCheckinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmivCheckinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B066E0A5205C825B00C86574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B066E0A7205C825B00C86574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B066E0A7205C825B00C86574 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B066E0AA205C825B00C86574 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B066E0AC205C825B00C86574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B066E0AF205C825B00C86574 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -125,25 +125,11 @@
 		B066E0A4205C825B00C86574 /* AmivCheckinApp */ = {
 			isa = PBXGroup;
 			children = (
-				B066E0CF205CB0A800C86574 /* APIRequest */,
-				B066E0CB205CA95200C86574 /* CheckinUserDefaults.swift */,
-				B066E0A5205C825B00C86574 /* AppDelegate.swift */,
-				B066E0A7205C825B00C86574 /* ViewController.swift */,
-				B066E0A9205C825B00C86574 /* Main.storyboard */,
-				B066E0CD205CAD6900C86574 /* Barcode.storyboard */,
-				B09D18C1205DF32C00B52D74 /* Popup.storyboard */,
-				B066E0AE205C825B00C86574 /* LaunchScreen.storyboard */,
-				B066E0AC205C825B00C86574 /* Assets.xcassets */,
 				B066E0B1205C825B00C86574 /* Info.plist */,
-				37B1A817205C9C7700A8F273 /* SettingsViewController.swift */,
-				B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */,
-				B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */,
-				B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */,
-				B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */,
-				379201E2205D992300E1C0CB /* StatisticsTableViewCell.swift */,
-				3726BBFC205DA01900A46D26 /* EventInfoTableViewCell.swift */,
-				B09D18C3205DF3FF00B52D74 /* PopupTableViewController.swift */,
-				B09D18C5205DF56C00B52D74 /* PopupTableViewCell.swift */,
+				B09D18CA205E679D00B52D74 /* Storage */,
+				B09D18C9205E676B00B52D74 /* Base */,
+				B09D18C8205E675E00B52D74 /* ViewControllers */,
+				B066E0CF205CB0A800C86574 /* APIRequest */,
 			);
 			path = AmivCheckinApp;
 			sourceTree = "<group>";
@@ -160,20 +146,106 @@
 		B066E0CF205CB0A800C86574 /* APIRequest */ = {
 			isa = PBXGroup;
 			children = (
+				B09D18C7205E672100B52D74 /* Checkin Data Types */,
 				B066E0D0205CB13100C86574 /* Checkin.swift */,
 				B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */,
 				B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */,
 				B0325EE0205D3CB900D46B60 /* CheckEventDetailsRequestDelegate.swift */,
-				B0325EDC205D30B400D46B60 /* CheckinMode.swift */,
 				B0325EDE205D372700D46B60 /* CheckOutResponse.swift */,
-				B0325EE2205D473A00D46B60 /* User.swift */,
-				B09D18BF205D9B6D00B52D74 /* UserMembership.swift */,
-				B0325EE6205D478700D46B60 /* Statistics.swift */,
-				B0325EEA205D536800D46B60 /* EventInfos.swift */,
-				B0325EE8205D4ED700D46B60 /* EventDetail.swift */,
-				B09D18BD205D964200B52D74 /* EventType.swift */,
+				B0325EDC205D30B400D46B60 /* CheckinMode.swift */,
 			);
 			path = APIRequest;
+			sourceTree = "<group>";
+		};
+		B09D18C7205E672100B52D74 /* Checkin Data Types */ = {
+			isa = PBXGroup;
+			children = (
+				B09D18BD205D964200B52D74 /* EventType.swift */,
+				B0325EE8205D4ED700D46B60 /* EventDetail.swift */,
+				B0325EEA205D536800D46B60 /* EventInfos.swift */,
+				B0325EE6205D478700D46B60 /* Statistics.swift */,
+				B09D18BF205D9B6D00B52D74 /* UserMembership.swift */,
+				B0325EE2205D473A00D46B60 /* User.swift */,
+			);
+			path = "Checkin Data Types";
+			sourceTree = "<group>";
+		};
+		B09D18C8205E675E00B52D74 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B09D18CC205E67F300B52D74 /* MainView */,
+				B09D18CB205E67E300B52D74 /* BarcodeScan */,
+				B09D18CD205E67FD00B52D74 /* Statistics */,
+				B09D18CF205E681D00B52D74 /* Popup */,
+				B09D18CE205E681000B52D74 /* Settings */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B09D18C9205E676B00B52D74 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B066E0A5205C825B00C86574 /* AppDelegate.swift */,
+				B066E0A9205C825B00C86574 /* Main.storyboard */,
+				B066E0CD205CAD6900C86574 /* Barcode.storyboard */,
+				B09D18C1205DF32C00B52D74 /* Popup.storyboard */,
+				B066E0AE205C825B00C86574 /* LaunchScreen.storyboard */,
+				B066E0AC205C825B00C86574 /* Assets.xcassets */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B09D18CA205E679D00B52D74 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B066E0CB205CA95200C86574 /* CheckinUserDefaults.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		B09D18CB205E67E300B52D74 /* BarcodeScan */ = {
+			isa = PBXGroup;
+			children = (
+				B066E0C5205C895800C86574 /* BarcodeScanViewController.swift */,
+				B066E0C9205C974B00C86574 /* BarcodeScanViewControllerExtension.swift */,
+			);
+			path = BarcodeScan;
+			sourceTree = "<group>";
+		};
+		B09D18CC205E67F300B52D74 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				B066E0A7205C825B00C86574 /* MainViewController.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		B09D18CD205E67FD00B52D74 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				B0325EEC205D72C400D46B60 /* StatisticsTableViewController.swift */,
+				B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */,
+				379201E2205D992300E1C0CB /* StatisticsTableViewCell.swift */,
+				3726BBFC205DA01900A46D26 /* EventInfoTableViewCell.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		B09D18CE205E681000B52D74 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				37B1A817205C9C7700A8F273 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B09D18CF205E681D00B52D74 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				B09D18C3205DF3FF00B52D74 /* PopupTableViewController.swift */,
+				B09D18C5205DF56C00B52D74 /* PopupTableViewCell.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +366,7 @@
 				B09D18C0205D9B6D00B52D74 /* UserMembership.swift in Sources */,
 				B09D18C4205DF3FF00B52D74 /* PopupTableViewController.swift in Sources */,
 				B09D18BC205D8AE900B52D74 /* UserTableViewCell.swift in Sources */,
-				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
+				B066E0A8205C825B00C86574 /* MainViewController.swift in Sources */,
 				B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */,
 				B09D18BE205D964200B52D74 /* EventType.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,

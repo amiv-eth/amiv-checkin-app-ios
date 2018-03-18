@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  AmivCheckinApp
 //
 //  Created by Domenic Wüthrich on 16.03.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var pinTitleLabel: UILabel!
     @IBOutlet weak var pinSubmitButton: UIButton!
@@ -26,12 +26,21 @@ class ViewController: UIViewController {
         self.view.addGestureRecognizer(recognizer)
         
         self.setUpSubmitButton()
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        self.navigationController?.view.backgroundColor = .white
     }
     
     func setUpSubmitButton() {
         self.pinSubmitButton.setTitleColor(.white, for: .normal)
         self.pinSubmitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
         self.pinSubmitButton.layer.cornerRadius = 8
+        self.pinSubmitButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.pinSubmitButton.layer.shadowOpacity = 0.3
+        self.pinSubmitButton.layer.shadowRadius = 10.0
+        self.pinSubmitButton.layer.masksToBounds = false
     }
 
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
@@ -59,13 +68,12 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: CheckinPinResponseDelegate {
+extension MainViewController: CheckinPinResponseDelegate {
     
     func validPin(_ message: String) {
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
         let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeViewController")
         DispatchQueue.main.async {
-            //self.present(barcodeView, animated: true, completion: nil)
             self.navigationController?.pushViewController(barcodeView, animated: true)
         }
     }

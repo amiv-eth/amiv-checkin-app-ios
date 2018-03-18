@@ -49,7 +49,9 @@ class BarcodeScanViewController: UIViewController {
         super.viewDidLoad()
         
         self.manualInputTextField.placeholder = "Legi #, email, or nethz"
-        self.submitButtonSetup()
+        self.setupSubmitButton()
+        self.setupInputField()
+        self.navigationItem.largeTitleDisplayMode = .never
         
         self.currentCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
         self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
@@ -71,8 +73,6 @@ class BarcodeScanViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.overlayTapped(_:)))
         self.overlay.addGestureRecognizer(recognizer)
         recognizer.numberOfTapsRequired = 1
-        
-        self.checkin.startPeriodicUpdate(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,6 +102,23 @@ class BarcodeScanViewController: UIViewController {
         gradient.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
         gradient.locations = [0.7, 1.0]
         blurEffectView.layer.mask = gradient
+    }
+    
+    func setupSubmitButton() {
+        self.submitButton.setTitleColor(.white, for: .normal)
+        self.submitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
+        self.submitButton.layer.cornerRadius = 5
+        self.submitButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.submitButton.layer.shadowOpacity = 0.3
+        self.submitButton.layer.shadowRadius = 10.0
+        self.submitButton.layer.masksToBounds = false
+    }
+    
+    func setupInputField() {
+        self.manualInputTextField.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.manualInputTextField.layer.shadowOpacity = 0.3
+        self.manualInputTextField.layer.shadowRadius = 10.0
+        self.manualInputTextField.layer.masksToBounds = false
     }
     
     func setupBarcodeScanning() {
@@ -144,12 +161,6 @@ class BarcodeScanViewController: UIViewController {
         self.view.layer.insertSublayer(previewLayer!, below: self.overlay.layer)
         
         debugPrint("Set up success")
-    }
-    
-    func submitButtonSetup() {
-        self.submitButton.setTitleColor(.white, for: .normal)
-        self.submitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
-        self.submitButton.layer.cornerRadius = 5
     }
     
     // MARK: - View functions
