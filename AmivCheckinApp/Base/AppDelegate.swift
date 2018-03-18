@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // pin: 84538431
         // legi: S17948324
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 

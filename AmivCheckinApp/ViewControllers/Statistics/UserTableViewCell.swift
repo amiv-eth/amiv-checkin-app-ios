@@ -30,6 +30,10 @@ class UserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        self.nameLabel.numberOfLines = 0
+    }
+    
     func config(_ user: User) {
         self.nameLabel.text = user.firstname + " " + user.lastname
         self.legiLabel.text = user.legi

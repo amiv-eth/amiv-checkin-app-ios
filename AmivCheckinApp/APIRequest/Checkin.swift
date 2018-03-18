@@ -31,8 +31,14 @@ public class Checkin {
         request.httpMethod = "POST"
         request.httpBody = param.data(using: .utf8)
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil, let data = data else { return }
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5
+        config.timeoutIntervalForResource = 5
+        
+        let task = URLSession(configuration: config).dataTask(with: request) { (data, response, error) in
+            guard error == nil, let data = data else {
+                debugPrint("error")
+                return }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             

@@ -12,6 +12,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
 
     var eventDetail: EventDetail?
     let checkin = Checkin()
+    let searchController = UISearchController()
     
     @IBOutlet weak var statisticsTableView: UITableView!
     
@@ -59,6 +60,8 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         let refreshController = UIRefreshControl()
         refreshController.addTarget(self, action: #selector(self.refreshUI), for: .valueChanged)
         self.statisticsTableView.refreshControl = refreshController
+        
+        self.setupSearchController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +77,14 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
     @objc func refreshUI() {
         self.statisticsTableView.refreshControl?.endRefreshing()
         self.checkin.checkEventDetails(self)
+    }
+    
+    func setupSearchController() {
+        self.searchController.searchResultsUpdater = self
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.searchController.searchBar.sizeToFit()
+        self.statisticsTableView.tableHeaderView = searchController.searchBar
     }
 
     // MARK: - Table view data source
@@ -142,6 +153,13 @@ extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
         print("Periodic update failure")
+    }
+}
+
+extension StatisticsTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.statisticsTableView.reloadData()
     }
     
 }

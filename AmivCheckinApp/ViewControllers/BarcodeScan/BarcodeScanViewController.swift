@@ -163,6 +163,10 @@ class BarcodeScanViewController: UIViewController {
         debugPrint("Set up success")
     }
     
+    func setupFailed() {
+        debugPrint("Failed to set up barcode scanning")
+    }
+    
     // MARK: - View functions
     
     @IBAction func SubmitButtonTapped(_ sender: Any) {
@@ -171,10 +175,6 @@ class BarcodeScanViewController: UIViewController {
         if let legi = self.manualInputTextField.text {
             self.checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
-    }
-    
-    func setupFailed() {
-        debugPrint("Failed to set up barcode scanning")
     }
     
     func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage, orange: Bool) {
