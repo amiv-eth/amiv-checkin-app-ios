@@ -63,9 +63,10 @@ extension ViewController: CheckinPinResponseDelegate {
     
     func validPin(_ message: String) {
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
-        let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeNavigationController")
+        let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeViewController")
         DispatchQueue.main.async {
-            self.present(barcodeView, animated: true, completion: nil)
+            //self.present(barcodeView, animated: true, completion: nil)
+            self.navigationController?.pushViewController(barcodeView, animated: true)
         }
     }
     

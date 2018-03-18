@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Barcode-->
+        <scene sceneID="nkL-yA-l17">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Barcode" id="ltD-i0-XaV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KAQ-vj-ef3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="-494"/>
+        </scene>
         <!--AMIV Check-in-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -77,6 +85,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="AMIV Check-in" id="wp5-kW-Wof">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="9Hp-QG-p6U"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="fKv-1N-YFQ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Er-l1-HcK">
                                 <rect key="frame" x="302" y="7" width="57" height="30"/>
@@ -95,6 +104,7 @@
                         <outlet property="pinSubmitButton" destination="cjh-fm-9ZB" id="yoQ-sE-ZeI"/>
                         <outlet property="pinTextField" destination="4Dz-Sb-v9G" id="LHA-Hz-smY"/>
                         <outlet property="pinTitleLabel" destination="IOD-7J-xum" id="KNP-9C-JKc"/>
+                        <segue destination="ltD-i0-XaV" kind="show" id="OM0-6b-Uci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

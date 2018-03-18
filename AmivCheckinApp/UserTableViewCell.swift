@@ -33,7 +33,11 @@ class UserTableViewCell: UITableViewCell {
     func config(_ user: User) {
         self.nameLabel.text = user.firstname + " " + user.lastname
         self.legiLabel.text = user.legi
-        self.statusLabel.text = user.checked_in.description
+        if user.checked_in {
+            self.statusLabel.text = "In"
+        } else {
+            self.statusLabel.text = "Out"
+        }
         self.membershipStatusLabel.text = user.membership.description
     }
 
