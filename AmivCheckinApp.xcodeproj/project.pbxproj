@@ -34,6 +34,9 @@
 		B09D18BC205D8AE900B52D74 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */; };
 		B09D18BE205D964200B52D74 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BD205D964200B52D74 /* EventType.swift */; };
 		B09D18C0205D9B6D00B52D74 /* UserMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18BF205D9B6D00B52D74 /* UserMembership.swift */; };
+		B09D18C2205DF32C00B52D74 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B09D18C1205DF32C00B52D74 /* Popup.storyboard */; };
+		B09D18C4205DF3FF00B52D74 /* PopupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18C3205DF3FF00B52D74 /* PopupTableViewController.swift */; };
+		B09D18C6205DF56C00B52D74 /* PopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D18C5205DF56C00B52D74 /* PopupTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		B09D18BB205D8AE900B52D74 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		B09D18BD205D964200B52D74 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		B09D18BF205D9B6D00B52D74 /* UserMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMembership.swift; sourceTree = "<group>"; };
+		B09D18C1205DF32C00B52D74 /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
+		B09D18C3205DF3FF00B52D74 /* PopupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTableViewController.swift; sourceTree = "<group>"; };
+		B09D18C5205DF56C00B52D74 /* PopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +260,7 @@
 				B066E0CE205CAD6900C86574 /* Barcode.storyboard in Resources */,
 				B066E0AD205C825B00C86574 /* Assets.xcassets in Resources */,
 				B066E0AB205C825B00C86574 /* Main.storyboard in Resources */,
+				B09D18C2205DF32C00B52D74 /* Popup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +289,14 @@
 				B0325EDD205D30B400D46B60 /* CheckinMode.swift in Sources */,
 				B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */,
 				B09D18C0205D9B6D00B52D74 /* UserMembership.swift in Sources */,
+				B09D18C4205DF3FF00B52D74 /* PopupTableViewController.swift in Sources */,
 				B09D18BC205D8AE900B52D74 /* UserTableViewCell.swift in Sources */,
 				B066E0A8205C825B00C86574 /* ViewController.swift in Sources */,
 				B0325EED205D72C400D46B60 /* StatisticsTableViewController.swift in Sources */,
 				B09D18BE205D964200B52D74 /* EventType.swift in Sources */,
 				B066E0A6205C825B00C86574 /* AppDelegate.swift in Sources */,
 				37B1A818205C9C7700A8F273 /* SettingsViewController.swift in Sources */,
+				B09D18C6205DF56C00B52D74 /* PopupTableViewCell.swift in Sources */,
 				B0325EEB205D536800D46B60 /* EventInfos.swift in Sources */,
 				3726BBFD205DA01900A46D26 /* EventInfoTableViewCell.swift in Sources */,
 				B0325EE7205D478700D46B60 /* Statistics.swift in Sources */,

@@ -18,6 +18,7 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var statisticsButton: UIBarButtonItem!
     @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
     @IBOutlet weak var manualInputTextField: UITextField!
+    @IBOutlet weak var statsView: UIView!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var regularCountLabel: UILabel!
     @IBOutlet weak var overlay: UIView!
@@ -88,6 +89,25 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.checkin.stopPeriodicUpdate()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.setupStatsView()
+    }
+    
+    func setupStatsView() {
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.statsView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.statsView.insertSubview(blurEffectView, belowSubview: self.manualInputTextField)
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = self.statsView.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0.7, 1.0]
+        blurEffectView.layer.mask = gradient
     }
     
     func setupBarcodeScanning() {
@@ -226,7 +246,18 @@ extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
-        print("Event Detial check failed")
+        print("Event Detail check failed")
+    }
+    
+    func checkError(_ message: String) {
+        self.captureSession.startRunning()
+    }
+}
+
+extension BarcodeScanViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.SubmitButtonTapped(self)
+        return true
     }
 }
 

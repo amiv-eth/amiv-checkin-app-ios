@@ -59,7 +59,10 @@ public class Checkin {
         request.httpBody = param.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil, let data = data else { return }
+            guard error == nil, let data = data else {
+                delegate.checkError((error?.localizedDescription)!)
+                return
+            }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
@@ -121,8 +124,15 @@ public class Checkin {
         let queue = DispatchQueue.global(qos: .background)
         self.checkEventDetails(delegate)
         queue.asyncAfter(deadline: DispatchTime.now() + Double(self.userDefaults.refreshFrequency)) {
-            self.startPeriodicUpdate(delegate)
+            self.callUpdate(delegate)
         }
+    }
+    
+    public func startPeriodicUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
+        guard self.userDefaults.autoRefresh else { return }
+        self.periodicUpdate = true
+        
+        self.callUpdate(delegate)
     }
     
     public func stopPeriodicUpdate() {
