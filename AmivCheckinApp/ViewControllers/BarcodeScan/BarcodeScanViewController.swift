@@ -110,6 +110,23 @@ class BarcodeScanViewController: UIViewController {
         blurEffectView.layer.mask = gradient
     }
     
+    func setupSubmitButton() {
+        self.submitButton.setTitleColor(.white, for: .normal)
+        self.submitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
+        self.submitButton.layer.cornerRadius = 5
+        self.submitButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.submitButton.layer.shadowOpacity = 0.3
+        self.submitButton.layer.shadowRadius = 10.0
+        self.submitButton.layer.masksToBounds = false
+    }
+    
+    func setupInputField() {
+        self.manualInputTextField.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.manualInputTextField.layer.shadowOpacity = 0.3
+        self.manualInputTextField.layer.shadowRadius = 10.0
+        self.manualInputTextField.layer.masksToBounds = false
+    }
+    
     func setupBarcodeScanning() {
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
             debugPrint("no camera")
@@ -150,12 +167,6 @@ class BarcodeScanViewController: UIViewController {
         self.view.layer.insertSublayer(previewLayer!, below: self.overlay.layer)
         
         debugPrint("Set up success")
-    }
-    
-    func submitButtonSetup() {
-        self.submitButton.setTitleColor(.white, for: .normal)
-        self.submitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
-        self.submitButton.layer.cornerRadius = 5
     }
     
     // MARK: - View functions

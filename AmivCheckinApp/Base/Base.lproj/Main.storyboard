@@ -10,18 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Barcode-->
-        <scene sceneID="nkL-yA-l17">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Barcode" id="ltD-i0-XaV" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KAQ-vj-ef3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="878" y="-494"/>
-        </scene>
         <!--AMIV Check-in-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AmivCheckinApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="AmivCheckinApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,17 +78,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="AMIV Check-in" id="wp5-kW-Wof">
                         <barButtonItem key="backBarButtonItem" title="Back" id="9Hp-QG-p6U"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fKv-1N-YFQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Er-l1-HcK">
-                                <rect key="frame" x="302" y="7" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings"/>
-                                <connections>
-                                    <action selector="settingsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B9j-5m-4aS"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="fzI-Ih-Ukk">
                             <connections>
-                                <segue destination="kmw-JM-X5h" kind="presentation" identifier="settingsSegue" id="rgf-dB-We1"/>
+                                <segue destination="kmw-JM-X5h" kind="show" identifier="settingsSegue" id="iWl-Wf-Zlx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -104,7 +88,6 @@
                         <outlet property="pinSubmitButton" destination="cjh-fm-9ZB" id="yoQ-sE-ZeI"/>
                         <outlet property="pinTextField" destination="4Dz-Sb-v9G" id="LHA-Hz-smY"/>
                         <outlet property="pinTitleLabel" destination="IOD-7J-xum" id="KNP-9C-JKc"/>
-                        <segue destination="ltD-i0-XaV" kind="show" id="OM0-6b-Uci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
