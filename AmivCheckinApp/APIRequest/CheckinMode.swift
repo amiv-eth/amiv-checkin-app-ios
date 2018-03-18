@@ -17,7 +17,6 @@ public enum CheckinMode {
     
     case checkIn
     case checkOut
-    
 }
 
 extension CheckinMode {
@@ -32,7 +31,6 @@ extension CheckinMode {
             return .checkIn
         }
     }
-    
 }
 
 extension CheckinMode: CustomStringConvertible {

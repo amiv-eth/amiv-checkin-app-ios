@@ -34,6 +34,15 @@ public protocol CheckLegiRequestDelegate {
         - statusCode: status code of the failed check
      */
     func legiCheckFailed(_ error: String, statusCode: Int)
-    func checkError(_ message: String)
+    
+    /**
+     
+     Function to handle the received error message upon invalid Legi check request
+     
+     - parameters:
+        - message: Server side response as String
+     
+     */
+    func checkLegiError(_ message: String)
     
 }

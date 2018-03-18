@@ -32,7 +32,15 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         self.navigationController?.view.backgroundColor = .white
     }
-    
+ /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "settingsSegue"){
+            if let navigationView = segue.destination as? UINavigationController, let settingsView = navigationView.viewControllers.first as? SettingsViewController {
+                settingsView.serverURL.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
+            }
+        }
+    }
+  */
     func setUpSubmitButton() {
         self.pinSubmitButton.setTitleColor(.white, for: .normal)
         self.pinSubmitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
@@ -78,13 +86,22 @@ extension MainViewController: CheckinPinResponseDelegate {
 
     func invalidPin(_ error: String, statusCode: Int) {
         DispatchQueue.main.async {
-            if statusCode == 401 {
-                self.pinTitleLabel.text = "Invalid PIN"
-            } else {
-                self.pinTitleLabel.text = "Error: status code \(statusCode)"
-            }
+            debugPrint(error)
+            self.pinTitleLabel.text = "Invalid PIN"
             self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
         }
+    }
+    
+    func checkPinError(_ message: String) {
+        DispatchQueue.main.async {
+            debugPrint(message)
+            self.pinTitleLabel.text = "Invalid URL"
+            self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
+            
+            self.performSegue(withIdentifier: "settingsSegue", sender: self)
+        }
+        
+
     }
 }
 

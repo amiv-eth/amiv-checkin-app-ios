@@ -34,4 +34,13 @@ public protocol CheckinPinResponseDelegate {
      */
     func invalidPin(_ error: String, statusCode: Int)
     
+    /**
+     
+     Function to handle the received error message upon invalid pin request
+     
+     - parameters:
+        - message: Server side response as String
+     
+     */
+    func checkPinError(_ message: String)
 }

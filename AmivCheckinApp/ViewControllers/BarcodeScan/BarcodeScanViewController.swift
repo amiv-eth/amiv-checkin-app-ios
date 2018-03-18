@@ -33,7 +33,7 @@ class BarcodeScanViewController: UIViewController {
     let checkin = Checkin()
     
     var eventDetail: EventDetail? {
-        didSet {    //
+        didSet {    //  display the two top statistics of the eventinfo
             DispatchQueue.main.async {
                 if let first = self.eventDetail?.statistics.first?.value, let second = self.eventDetail?.statistics[1].value {
                     self.currentCountLabel.text = String(describing: first)
@@ -51,11 +51,12 @@ class BarcodeScanViewController: UIViewController {
         // setting up UI elements
         self.manualInputTextField.placeholder = "Legi #, email, or nethz"
         
-        self.submitButtonSetup()
+        self.setupSubmitButton()
+        self.setupInputField()
+        self.navigationItem.largeTitleDisplayMode = .never
         
         self.currentCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
         self.currentCountLabel.text = String(describing: 0)
-        
         self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
         self.regularCountLabel.text = String(describing: 0)
         
@@ -131,7 +132,6 @@ class BarcodeScanViewController: UIViewController {
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
             debugPrint("no camera")
             return
-            
         }
         let videoInput: AVCaptureDeviceInput
         
@@ -152,7 +152,6 @@ class BarcodeScanViewController: UIViewController {
         
         if (captureSession.canAddOutput(metadataOutput)) {
             captureSession.addOutput(metadataOutput)
-            
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.code39]
         } else {
@@ -248,6 +247,10 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
             self.configureOverlay(error, textColor: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1), overlayTint: #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.2), image: #imageLiteral(resourceName: "red_cross"), orange: false)
         }
     }
+    
+    func checkLegiError(_ message: String) {
+        debugPrint(message)
+    }
 }
 
 extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
@@ -257,10 +260,11 @@ extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
-        print("Event Detail check failed")
+        debugPrint("Event Detail check failed")
     }
     
-    func checkError(_ message: String) {
+    func checkEventDetailsError(_ message: String) {
+        debugPrint(message)
         self.captureSession.startRunning()
     }
 }

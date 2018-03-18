@@ -36,4 +36,13 @@ public protocol CheckEventDetailsRequestDelegate {
      */
     func eventDetailsCheckFailed(_ error: String, statusCode: Int)
     
+    /**
+     
+     Function to handle the received error message upon invalid event details check request
+     
+     - parameters:
+        - message: Server side response as String
+     
+     */
+    func checkEventDetailsError(_ message: String)
 }

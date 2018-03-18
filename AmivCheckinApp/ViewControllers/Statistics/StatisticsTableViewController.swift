@@ -98,6 +98,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let data = self.eventDetail else { return UITableViewCell() }
+        
         switch self.state {
         case .eventInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.eventCell.rawValue) as! EventInfoTableViewCell
@@ -141,7 +142,11 @@ extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
-        print("Periodic update failure")
+        debugPrint("Periodic update failure")
+    }
+    
+    func checkEventDetailsError(_ message: String) {
+        debugPrint(message)
     }
     
 }
