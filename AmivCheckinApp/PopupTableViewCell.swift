@@ -1,0 +1,30 @@
+//
+//  PopupTableViewCell.swift
+//  AmivCheckinApp
+//
+//  Created by Domenic Wüthrich on 18.03.18.
+//  Copyright © 2018 Domenic Wüthrich. All rights reserved.
+//
+
+import UIKit
+
+class PopupTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var keyLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func config(_ key: String, value: String) {
+        self.keyLabel.text = key
+        self.valueLabel.text = value
+    }
+
+}

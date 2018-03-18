@@ -38,10 +38,13 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         switch self.stateSegmentedControl.selectedSegmentIndex {
         case 0:
             self.state = .statistics
+            self.statisticsTableView.allowsSelection = false
         case 1:
             self.state = .people
+            self.statisticsTableView.allowsSelection = true
         default:
             self.state = .eventInfo
+            self.statisticsTableView.allowsSelection = false
         }
     }
     
@@ -52,8 +55,6 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         self.stateSegmentedControl.layer.borderColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
         self.stateSegmentedControl.layer.borderWidth = 1
         self.stateSegmentedControl.layer.masksToBounds = true
-        
-        self.statisticsTableView.allowsSelection = false
         
         let refreshController = UIRefreshControl()
         refreshController.addTarget(self, action: #selector(self.refreshUI), for: .valueChanged)
@@ -102,18 +103,32 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.eventCell.rawValue) as! EventInfoTableViewCell
             let infos = data.eventinfos.getDetail(indexPath.row)
             cell.config(infos.0, value: infos.1)
+            cell.selectionStyle = .none
             return cell
         case .people:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.peopleCell.rawValue) as! UserTableViewCell
             cell.config(data.signups[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         case .statistics:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.statisticsCell.rawValue) as! StatisticsTableViewCell
             cell.config(data.statistics[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.state == .people {
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Popup", bundle: nil)
+                let popup = storyboard.instantiateViewController(withIdentifier: "popupViewController") as! PopupTableViewController
+                popup.modalPresentationStyle = .overFullScreen
+                popup.user = self.eventDetail?.signups[indexPath.row]
+                self.present(popup, animated: false, completion: nil)
+            }
+        }
+    }
 }
 
 extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {

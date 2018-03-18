@@ -120,7 +120,7 @@ public class Checkin {
         let queue = DispatchQueue.global(qos: .background)
         self.checkEventDetails(delegate)
         queue.asyncAfter(deadline: DispatchTime.now() + Double(self.userDefaults.refreshFrequency)) {
-            self.startPeriodicUpdate(delegate)
+            self.callUpdate(delegate)
         }
     }
     

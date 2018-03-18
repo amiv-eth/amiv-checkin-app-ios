@@ -78,7 +78,6 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.checkin.startPeriodicUpdate(self)
-        self.setupStatsView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -86,9 +85,13 @@ class BarcodeScanViewController: UIViewController {
         self.checkin.stopPeriodicUpdate()
     }
     
+    override func viewDidLayoutSubviews() {
+        self.setupStatsView()
+    }
+    
     func setupStatsView() {
         
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.statsView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -235,7 +238,7 @@ extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     }
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
-        print("Event Detial check failed")
+        print("Event Detail check failed")
     }
     
     func checkError(_ message: String) {
