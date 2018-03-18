@@ -17,6 +17,11 @@ class PopupTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func layoutSubviews() {
+        self.keyLabel.numberOfLines = 0
+        self.valueLabel.numberOfLines = 0
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

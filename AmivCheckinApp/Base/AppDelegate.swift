@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          Legi: S17948324
  */
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 

@@ -168,6 +168,10 @@ class BarcodeScanViewController: UIViewController {
         debugPrint("Set up success")
     }
     
+    func setupFailed() {
+        debugPrint("Failed to set up barcode scanning")
+    }
+    
     // MARK: - View functions
     
     @IBAction func SubmitButtonTapped(_ sender: Any) {
