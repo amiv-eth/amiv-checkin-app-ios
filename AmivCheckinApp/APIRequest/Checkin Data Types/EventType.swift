@@ -48,7 +48,7 @@ public enum EventType: Codable {
     }
     
     public func encode(to encoder: Encoder) throws {
-        print("encoding...")
+        debugPrint("encoding...")
     }
 }
 

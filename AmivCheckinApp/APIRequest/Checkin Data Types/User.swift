@@ -24,6 +24,7 @@ public struct User: Codable {
     let nethz: String?
     let signup_id: Int
     let user_id: String
+    let checkin_count: Int  // added
     
     public func getDetail(_ at: Int) -> (String, value: String) {
         switch at {
@@ -45,6 +46,8 @@ public struct User: Codable {
             return ("Sign up ID", String(describing: self.signup_id))
         case 8:
             return ("User ID", self.user_id)
+        case 9:                                                 // added
+            return ("Checkin Count", "\(self.checkin_count)")
         default:
             return ("NaN", "NaN")
         }

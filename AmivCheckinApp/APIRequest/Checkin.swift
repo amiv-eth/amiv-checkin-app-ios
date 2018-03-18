@@ -131,7 +131,7 @@ public class Checkin {
             guard error == nil, let data = data else { return }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
-            
+            print(message)
             if status.statusCode != 200 {
                 delegate.eventDetailsCheckFailed(message, statusCode: status.statusCode)
             } else {

@@ -31,10 +31,12 @@ class UserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func config(_ user: User) {
+    func config(_ user: User, counting: Bool) {
         self.nameLabel.text = user.firstname + " " + user.lastname
         self.legiLabel.text = user.legi
-        if user.checked_in {
+        if counting {
+            self.statusLabel.text = "\(user.checkin_count)"
+        } else if user.checked_in {
             self.statusLabel.text = "In"
         } else {
             self.statusLabel.text = "Out"
