@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ 
+ Class for stats cells
+ 
+ */
 class StatisticsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var keyLabel: UILabel!

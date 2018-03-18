@@ -9,28 +9,26 @@
 import Foundation
 import UIKit
 
+/**
+ 
+ Class wherein the user default setting-values of the check-in app are stored
+ 
+ */
 public class CheckinUserDefaults {
     
     private let userDefaults = UserDefaults()
     
     // MARK: - UserDefaults objects
     
-    /**
-     UserDefault key for firstTime
-     
-     */
+    // UserDefault settings keys for the first initialization
     private let urlAdressKey = "urlAdress"
-    
     private let autoRefreshKey = "autoRefresh"
-    
     private let refreshFrequencyKey = "refreshFrequency"
+    private let eventPinKey = "eventKey"
     
-    /**
-     First time opening the app
-     
-     */
+    // Userdefault settings values for the first initialization
     public var urlAdress: String {
-        get {
+        get {       // handling first time opening the app
             if self.userDefaults.string(forKey: self.urlAdressKey) == nil {
                 self.userDefaults.set("https://checkin.amiv.ethz.ch", forKey: self.urlAdressKey)
             }
@@ -41,9 +39,7 @@ public class CheckinUserDefaults {
         }
     }
     
-    private let eventPinKey: String = "eventKey"
-    
-    public var eventPin: String? {
+    public var eventPin: String? {  
         get {
             return self.userDefaults.string(forKey: self.eventPinKey)
         }
@@ -53,7 +49,7 @@ public class CheckinUserDefaults {
     }
     
     public var autoRefresh: Bool {
-        get {
+        get {   // handling first time opening the app
             if self.userDefaults.string(forKey: self.autoRefreshKey) == nil {
                 self.userDefaults.set(true, forKey: self.autoRefreshKey)
             }
@@ -66,7 +62,7 @@ public class CheckinUserDefaults {
     }
     
     public var refreshFrequency: Int {
-        get {
+        get {   // handling first time opening the app
             if self.userDefaults.string(forKey: self.refreshFrequencyKey) == nil {
                 self.userDefaults.set(20, forKey: self.refreshFrequencyKey)
             }
@@ -75,7 +71,5 @@ public class CheckinUserDefaults {
         set(value) {
             self.userDefaults.set(value, forKey: self.refreshFrequencyKey)
         }
-        
     }
-    
 }

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ 
+ Struct describing the user data the server gives us.
+ 
+ */
 public struct User: Codable {
     
     let checked_in: Bool

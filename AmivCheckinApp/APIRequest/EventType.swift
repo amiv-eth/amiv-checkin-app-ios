@@ -8,6 +8,13 @@
 
 import Foundation
 
+/**
+ 
+ Struct describing the type of event as part of the event infos in server-returned event detail data.
+ 
+ (EventType \elementOf EventInfos \subsetOf EventDetail)
+ 
+ */
 public enum EventType: Codable {
     
     case pvk

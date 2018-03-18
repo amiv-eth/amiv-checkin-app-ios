@@ -8,6 +8,18 @@
 
 import Foundation
 
+/**
+ 
+ Membership type of a user. Used to properly display people's membership data in the statistics
+ view.
+ 
+ There are four types of users:
+ - 'regular'
+ - 'extraordinary'
+ - 'honorary'
+ - 'none' (not a member)
+ 
+ */
 public enum UserMembership: Codable {
     
     case regular

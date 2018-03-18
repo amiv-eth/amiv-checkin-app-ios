@@ -15,9 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // testing
-        // pin: 84538431
-        // legi: S17948324
+/*
+    Coding-Weekend March 2018 Tests:
+         
+         PIN: 84538431
+         Legi: S17948324
+ */
         
         return true
     }

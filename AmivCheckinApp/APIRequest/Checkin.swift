@@ -32,7 +32,8 @@ public class Checkin {
         request.httpBody = param.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil, let data = data else { return }
+            guard error == nil, let data = data else {
+                return }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
@@ -40,7 +41,6 @@ public class Checkin {
                 delegate.invalidPin(message, statusCode: status.statusCode)
             } else {
                 self.userDefaults.eventPin = pin
-                
                 delegate.validPin(message)
             }
         }
@@ -89,7 +89,6 @@ public class Checkin {
         request.setValue(pin, forHTTPHeaderField: "pin")
         request.httpMethod = "GET"
         
-        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { return }
             
@@ -111,6 +110,11 @@ public class Checkin {
         task.resume()
     }
     
+    /**
+     
+    Start periodic updates of data.
+     
+     */
     public func startPeriodicUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
         guard self.userDefaults.autoRefresh else { return }
         self.periodicUpdate = true

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ 
+ Struct describing server-returned event details.
+ 
+ */
 public struct EventDetail: Codable {
     
     let eventinfos: EventInfos

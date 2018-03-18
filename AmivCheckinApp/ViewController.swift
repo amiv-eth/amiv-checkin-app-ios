@@ -35,7 +35,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
-        
     }
     
     @objc func resignKeyboard() {
@@ -56,7 +55,6 @@ class ViewController: UIViewController {
             UIApplication.shared.open(url) {_ in }
         }
     }
-    
 }
 
 extension ViewController: CheckinPinResponseDelegate {
@@ -65,15 +63,17 @@ extension ViewController: CheckinPinResponseDelegate {
         let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
         let barcodeView = storyboard.instantiateViewController(withIdentifier: "BarcodeViewController")
         DispatchQueue.main.async {
-            //self.present(barcodeView, animated: true, completion: nil)
             self.navigationController?.pushViewController(barcodeView, animated: true)
         }
     }
-    
 
     func invalidPin(_ error: String, statusCode: Int) {
         DispatchQueue.main.async {
-            self.pinTitleLabel.text = "Invalid PIN"
+            if statusCode == 401 {
+                self.pinTitleLabel.text = "Invalid PIN"
+            } else {
+                self.pinTitleLabel.text = "Error: status code \(statusCode)"
+            }
             self.pinTitleLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
         }
     }

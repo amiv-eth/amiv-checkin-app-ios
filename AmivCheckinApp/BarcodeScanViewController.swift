@@ -32,7 +32,7 @@ class BarcodeScanViewController: UIViewController {
     let checkin = Checkin()
     
     var eventDetail: EventDetail? {
-        didSet {
+        didSet {    //
             DispatchQueue.main.async {
                 if let first = self.eventDetail?.statistics.first?.value, let second = self.eventDetail?.statistics[1].value {
                     self.currentCountLabel.text = String(describing: first)
@@ -47,14 +47,18 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting up UI elements
         self.manualInputTextField.placeholder = "Legi #, email, or nethz"
+        
         self.submitButtonSetup()
         
         self.currentCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
-        self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
         self.currentCountLabel.text = String(describing: 0)
+        
+        self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
         self.regularCountLabel.text = String(describing: 0)
         
+        // start scanning for barcodes
         self.setupBarcodeScanning()
         captureSession.startRunning()
         
@@ -63,6 +67,7 @@ class BarcodeScanViewController: UIViewController {
         label.isHidden = true
         image.isHidden = true
         
+        // initialize tap gesture recognizer to resign keyboard
         let keyboardRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.resignKeyboard))
         self.view.addGestureRecognizer(keyboardRecognizer)
         
@@ -71,6 +76,7 @@ class BarcodeScanViewController: UIViewController {
         self.overlay.addGestureRecognizer(recognizer)
         recognizer.numberOfTapsRequired = 1
         
+        // start periodic updates
         self.checkin.startPeriodicUpdate(self)
     }
     
@@ -144,13 +150,6 @@ class BarcodeScanViewController: UIViewController {
     
     // MARK: - Barcode Handling
     
-    func foundBarcode(_ code: String) {
-        debugPrint(code)
-        
-        // determine whether valid barcode or not and go to invalidLegi/validLegi accordingly
-        
-    }
-    
     func setupFailed() {
         debugPrint("Failed to set up barcode scanning")
     }
@@ -159,7 +158,7 @@ class BarcodeScanViewController: UIViewController {
         // display an overlay and give quick vibration feedback
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
-        // configure for success
+        // configure overlay for success indication
         label.text = message
         label.textColor = textColor
         overlay.backgroundColor = overlayTint
@@ -178,7 +177,7 @@ class BarcodeScanViewController: UIViewController {
         label.isHidden = true
         image.isHidden = true
         
-        // restart scanning
+        // restart scanning for barcodes
         captureSession.startRunning()
     }
     
@@ -203,7 +202,7 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
         DispatchQueue.main.async {
             self.checkin.checkEventDetails(self)
             switch response.signup.membership {
-            case .extraordinary, .honorary, .regular:
+            case .extraordinary, .honorary:
                 self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: true)
             case .regular:
                 self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: false)

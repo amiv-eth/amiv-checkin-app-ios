@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ 
+ Struct describing the data returned from the server for a Legi check.
+ 
+ */
 public struct CheckOutResponse: Codable {
     
     let message: String

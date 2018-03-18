@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ 
+ Class for event info cells
+ 
+ */
 class EventInfoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var keyLabel: UILabel!

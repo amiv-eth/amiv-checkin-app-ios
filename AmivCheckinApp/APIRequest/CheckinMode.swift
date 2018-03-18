@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ 
+ An enum as a help to decide whether to check users in or check them out.
+ 
+ */
 public enum CheckinMode {
     
     case checkIn
