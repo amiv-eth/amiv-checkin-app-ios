@@ -18,6 +18,7 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var statisticsButton: UIBarButtonItem!
     @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
     @IBOutlet weak var manualInputTextField: UITextField!
+    @IBOutlet weak var statsView: UIView!
     @IBOutlet weak var currentCountLabel: UILabel!
     @IBOutlet weak var regularCountLabel: UILabel!
     @IBOutlet weak var overlay: UIView!
@@ -77,11 +78,27 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.checkin.startPeriodicUpdate(self)
+        self.setupStatsView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.checkin.stopPeriodicUpdate()
+    }
+    
+    func setupStatsView() {
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.statsView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.statsView.insertSubview(blurEffectView, belowSubview: self.manualInputTextField)
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = self.statsView.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0.7, 1.0]
+        blurEffectView.layer.mask = gradient
     }
     
     func setupBarcodeScanning() {
@@ -142,15 +159,6 @@ class BarcodeScanViewController: UIViewController {
         }
     }
     
-    // MARK: - Barcode Handling
-    
-    func foundBarcode(_ code: String) {
-        debugPrint(code)
-        
-        // determine whether valid barcode or not and go to invalidLegi/validLegi accordingly
-        
-    }
-    
     func setupFailed() {
         debugPrint("Failed to set up barcode scanning")
     }
@@ -203,7 +211,7 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
         DispatchQueue.main.async {
             self.checkin.checkEventDetails(self)
             switch response.signup.membership {
-            case .extraordinary, .honorary, .regular:
+            case .extraordinary, .honorary:
                 self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), overlayTint: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: true)
             case .regular:
                 self.configureOverlay(response.message, textColor: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 1), overlayTint: #colorLiteral(red: 0.003053205786, green: 0.692053318, blue: 0.3124624491, alpha: 0.2), image: #imageLiteral(resourceName: "green_check"), orange: false)
@@ -228,6 +236,17 @@ extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     
     func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
         print("Event Detial check failed")
+    }
+    
+    func checkError(_ message: String) {
+        self.captureSession.startRunning()
+    }
+}
+
+extension BarcodeScanViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.SubmitButtonTapped(self)
+        return true
     }
 }
 

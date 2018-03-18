@@ -11,6 +11,7 @@ import UIKit
 class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var eventDetail: EventDetail?
+    let checkin = Checkin()
     
     @IBOutlet weak var statisticsTableView: UITableView!
     
@@ -53,6 +54,25 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         self.stateSegmentedControl.layer.masksToBounds = true
         
         self.statisticsTableView.allowsSelection = false
+        
+        let refreshController = UIRefreshControl()
+        refreshController.addTarget(self, action: #selector(self.refreshUI), for: .valueChanged)
+        self.statisticsTableView.refreshControl = refreshController
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.checkin.startPeriodicUpdate(self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.checkin.stopPeriodicUpdate()
+    }
+    
+    @objc func refreshUI() {
+        self.statisticsTableView.refreshControl?.endRefreshing()
+        self.checkin.checkEventDetails(self)
     }
 
     // MARK: - Table view data source
@@ -94,4 +114,19 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
+}
+
+extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {
+    
+    func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
+        DispatchQueue.main.async {
+            self.eventDetail = eventDetail
+            self.statisticsTableView.reloadData()
+        }
+    }
+    
+    func eventDetailsCheckFailed(_ error: String, statusCode: Int) {
+        print("Periodic update failure")
+    }
+    
 }

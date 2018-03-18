@@ -33,11 +33,6 @@ class SettingsViewController: UIViewController {
         self.view.addGestureRecognizer(recognizer)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func doneButtonTapped(_ sender: Any) {
         
         if let url = self.serverURL.text, let freq = self.refreshFrequency.text, let frequency = Int(freq) {

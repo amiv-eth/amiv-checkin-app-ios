@@ -12,5 +12,6 @@ public protocol CheckLegiRequestDelegate {
     
     func legiCheckSuccess(_ response: CheckOutResponse)
     func legiCheckFailed(_ error: String, statusCode: Int)
+    func checkError(_ message: String)
     
 }
