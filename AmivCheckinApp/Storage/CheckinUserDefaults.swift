@@ -11,24 +11,20 @@ import UIKit
 
 /**
  
- Class wherein the user default setting-values of the check-in app are stored
+ UserDefaults wrapper to store settings data for Checkin app
  
  */
 public class CheckinUserDefaults {
     
     private let userDefaults = UserDefaults()
     
-    // MARK: - UserDefaults objects
+    // MARK: - URLAdress
     
-    // UserDefault settings keys for the first initialization
     private let urlAdressKey = "urlAdress"
-    private let autoRefreshKey = "autoRefresh"
-    private let refreshFrequencyKey = "refreshFrequency"
-    private let eventPinKey = "eventKey"
     
-    // Userdefault settings values for the first initialization
+    // Adress of api server
     public var urlAdress: String {
-        get {       // handling first time opening the app
+        get {
             if self.userDefaults.string(forKey: self.urlAdressKey) == nil {
                 self.userDefaults.set("https://checkin.amiv.ethz.ch", forKey: self.urlAdressKey)
             }
@@ -39,6 +35,11 @@ public class CheckinUserDefaults {
         }
     }
     
+    // MARK: - EventPin
+    
+    private let eventPinKey = "eventKey"
+    
+    // Valid Pin for current event
     public var eventPin: String? {  
         get {
             return self.userDefaults.string(forKey: self.eventPinKey)
@@ -48,8 +49,13 @@ public class CheckinUserDefaults {
         }
     }
     
+    // MARK: - AutoRefresh
+    
+    private let autoRefreshKey = "autoRefresh"
+    
+    // Turns on auto refresh
     public var autoRefresh: Bool {
-        get {   // handling first time opening the app
+        get {
             if self.userDefaults.string(forKey: self.autoRefreshKey) == nil {
                 self.userDefaults.set(true, forKey: self.autoRefreshKey)
             }
@@ -61,8 +67,13 @@ public class CheckinUserDefaults {
         
     }
     
+    // MARK: - RefreshFrequency
+    
+    private let refreshFrequencyKey = "refreshFrequency"
+    
+    // Frequency to automatically refresh data from server
     public var refreshFrequency: Int {
-        get {   // handling first time opening the app
+        get {
             if self.userDefaults.string(forKey: self.refreshFrequencyKey) == nil {
                 self.userDefaults.set(20, forKey: self.refreshFrequencyKey)
             }
