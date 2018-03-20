@@ -29,6 +29,7 @@
 		B066E0CE205CAD6900C86574 /* Barcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B066E0CD205CAD6900C86574 /* Barcode.storyboard */; };
 		B066E0D1205CB13100C86574 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D0205CB13100C86574 /* Checkin.swift */; };
 		B066E0D5205D1D5200C86574 /* CheckinPinResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */; };
+		B0E77B84206108C5006CC392 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B0E77B83206108C5006CC392 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		B066E0CD205CAD6900C86574 /* Barcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Barcode.storyboard; sourceTree = "<group>"; };
 		B066E0D0205CB13100C86574 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinPinResponseDelegate.swift; sourceTree = "<group>"; };
+		B0E77B83206108C5006CC392 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		B066E099205C825B00C86574 = {
 			isa = PBXGroup;
 			children = (
+				B0E77B83206108C5006CC392 /* README.md */,
 				B066E0A4205C825B00C86574 /* AmivCheckinApp */,
 				B066E0B9205C825B00C86574 /* AmivCheckinAppTests */,
 				B066E0A3205C825B00C86574 /* Products */,
@@ -237,6 +240,7 @@
 			files = (
 				B066E0B0205C825B00C86574 /* LaunchScreen.storyboard in Resources */,
 				B066E0CE205CAD6900C86574 /* Barcode.storyboard in Resources */,
+				B0E77B84206108C5006CC392 /* README.md in Resources */,
 				B066E0AD205C825B00C86574 /* Assets.xcassets in Resources */,
 				B066E0AB205C825B00C86574 /* Main.storyboard in Resources */,
 			);
