@@ -15,6 +15,8 @@ import Foundation
  */
 public struct EventInfos: Decodable {
     
+    // MARK: - Variables
+    
     let _id: String
     let description: String?
     let event_type: EventType
@@ -22,7 +24,18 @@ public struct EventInfos: Decodable {
     let spots: Int?
     let time_started: String?
     let title: String
+}
+
+extension EventInfos {
     
+    /**
+     Get Event Details to display on statistics table view
+     
+     - Parameter at: IndexPath of element to display
+     
+     - Returns: Key (title) and associated value
+     
+     */
     public func getDetail(_ at: Int) -> (String, value: String) {
         switch at {
         case 0:
@@ -43,5 +56,4 @@ public struct EventInfos: Decodable {
             return ("NaN", "NaN")
         }
     }
-    
 }

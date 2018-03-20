@@ -182,6 +182,14 @@ class BarcodeScanViewController: UIViewController {
         }
     }
     
+    @IBAction func statisticsButtonTapped(_ sender: Any) {
+        guard let detail = self.eventDetail else { return }
+        let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
+        let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController") as! StatisticsTableViewController
+        statisticsViewController.eventDetail = detail
+        self.navigationController?.pushViewController(statisticsViewController, animated: true)
+    }
+    
     // MARK: - Barcode Handling
     
     func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage, orange: Bool) {
@@ -214,18 +222,9 @@ class BarcodeScanViewController: UIViewController {
     @objc func resignKeyboard() {
         self.manualInputTextField.resignFirstResponder()
     }
-    
-    // MARK: - Statistics View Button
-    
-    @IBAction func statisticsButton(_ sender: Any) {
-        guard let detail = self.eventDetail else { return }
-        let storyboard = UIStoryboard(name: "Barcode", bundle: nil)
-        let statisticsViewController = storyboard.instantiateViewController(withIdentifier: "StatisticsViewController") as! StatisticsTableViewController
-        statisticsViewController.eventDetail = detail
-        self.navigationController?.pushViewController(statisticsViewController, animated: true)
-    }
 }
 
+// MARK: - CheckLegiRequestDelegate protocol extension
 extension BarcodeScanViewController: CheckLegiRequestDelegate {
     
     func legiCheckSuccess(_ response: CheckOutResponse) {
@@ -253,6 +252,7 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
     }
 }
 
+// MARK: - CheckEventDetailsRequestDelegate protocol extension
 extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     
     func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
@@ -269,6 +269,7 @@ extension BarcodeScanViewController: CheckEventDetailsRequestDelegate {
     }
 }
 
+// MARK: - UITextFieldDelegate protocol extension
 extension BarcodeScanViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.SubmitButtonTapped(self)

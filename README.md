@@ -18,3 +18,4 @@ Currently the app is only available by installation directly from XCode.
 - Searching through statistics
 - Some more UI and UX work
 - More code documentation
+- Write tests

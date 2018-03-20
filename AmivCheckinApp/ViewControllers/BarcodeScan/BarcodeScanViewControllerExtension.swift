@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
+// MARK: - AVCaptureMetadataOutputObjectsDelegate protocol extension
 extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

@@ -8,13 +8,20 @@
 
 import UIKit
 
-class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StatisticsTableViewController: UIViewController {
 
+    // MARK: - Variables
+    
     var eventDetail: EventDetail?
     let checkin = Checkin()
     let searchController = UISearchController()
     
+    // MARK: - IB Variables
+    
     @IBOutlet weak var statisticsTableView: UITableView!
+    @IBOutlet weak var stateSegmentedControl: UISegmentedControl!
+    
+    // MARK: - Identifier Enums
     
     enum CellIdentifier: String {
         case peopleCell
@@ -33,21 +40,8 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
             statisticsTableView.reloadData()
         }
     }
-    @IBOutlet weak var stateSegmentedControl: UISegmentedControl!
     
-    @IBAction func stateSegmentedControl(_ sender: Any) {
-        switch self.stateSegmentedControl.selectedSegmentIndex {
-        case 0:
-            self.state = .statistics
-            self.statisticsTableView.allowsSelection = false
-        case 1:
-            self.state = .people
-            self.statisticsTableView.allowsSelection = true
-        default:
-            self.state = .eventInfo
-            self.statisticsTableView.allowsSelection = false
-        }
-    }
+    // MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,11 +68,6 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         self.checkin.stopPeriodicUpdate()
     }
     
-    @objc func refreshUI() {
-        self.statisticsTableView.refreshControl?.endRefreshing()
-        self.checkin.checkEventDetails(self)
-    }
-    
     func setupSearchController() {
         self.searchController.searchResultsUpdater = self
         self.searchController.hidesNavigationBarDuringPresentation = false
@@ -86,13 +75,36 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
         self.searchController.searchBar.sizeToFit()
         self.statisticsTableView.tableHeaderView = searchController.searchBar
     }
+    
+    @objc func refreshUI() {
+        self.statisticsTableView.refreshControl?.endRefreshing()
+        self.checkin.checkEventDetails(self)
+    }
+    
+    // MARK: - UI Functions
+    
+    @IBAction func stateSegmentedControl(_ sender: Any) {
+        switch self.stateSegmentedControl.selectedSegmentIndex {
+        case 0:
+            self.state = .statistics
+            self.statisticsTableView.allowsSelection = false
+        case 1:
+            self.state = .people
+            self.statisticsTableView.allowsSelection = true
+        default:
+            self.state = .eventInfo
+            self.statisticsTableView.allowsSelection = false
+        }
+    }
+}
 
-    // MARK: - Table view data source
-
+// MARK: - UITableView Protocol extension
+extension StatisticsTableViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let detail = eventDetail {
             switch self.state {
@@ -143,6 +155,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
     }
 }
 
+// MARK: - CheckEventDetailsRequestDelegate protocol extension
 extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {
     
     func eventDetailsCheckSuccess(_ eventDetail: EventDetail) {
@@ -161,6 +174,7 @@ extension StatisticsTableViewController: CheckEventDetailsRequestDelegate {
     }
 }
 
+// MARK: - UISearchResultsUpdating protocol extension
 extension StatisticsTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

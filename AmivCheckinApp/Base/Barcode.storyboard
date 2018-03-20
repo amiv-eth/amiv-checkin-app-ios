@@ -142,7 +142,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Statistic" id="N6n-gy-KMe">
                             <connections>
-                                <action selector="statisticsButton:" destination="Sap-ad-KJk" id="xCU-3m-YrY"/>
+                                <action selector="statisticsButtonTapped:" destination="Sap-ad-KJk" id="Bkg-m8-2qv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

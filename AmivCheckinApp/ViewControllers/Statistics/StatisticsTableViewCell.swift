@@ -15,8 +15,12 @@ import UIKit
  */
 class StatisticsTableViewCell: UITableViewCell {
 
+    // MARK: - IB Variables
+    
     @IBOutlet weak var keyLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    
+    // MARK: - Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()

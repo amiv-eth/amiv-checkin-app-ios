@@ -64,14 +64,13 @@
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="I1f-Ah-CSE"/>
                             <constraint firstItem="xPS-sM-aVE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ihq-yv-kLG"/>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M9m-0M-I4o"/>
-                            <constraint firstItem="IOD-7J-xum" firstAttribute="top" secondItem="8WR-5S-5MF" secondAttribute="bottom" constant="20" id="XOd-MT-RKA"/>
+                            <constraint firstItem="IOD-7J-xum" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8WR-5S-5MF" secondAttribute="bottom" constant="20" id="XOd-MT-RKA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IOD-7J-xum" secondAttribute="trailing" constant="10" id="YXE-zO-tV8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8WR-5S-5MF" secondAttribute="trailing" constant="10" id="bVK-9c-Ch0"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="top" secondItem="4Dz-Sb-v9G" secondAttribute="bottom" constant="37" id="e66-oH-M2Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xPS-sM-aVE" secondAttribute="bottom" constant="20" id="gLJ-3g-Dzd"/>
-                            <constraint firstItem="8WR-5S-5MF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="lUq-RI-88q"/>
+                            <constraint firstItem="8WR-5S-5MF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="lUq-RI-88q"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="od3-Y1-JFy"/>
-                            <constraint firstItem="4Dz-Sb-v9G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xMk-HR-zaV"/>
                             <constraint firstItem="8WR-5S-5MF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="yrP-1Z-IVg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -80,7 +79,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="9Hp-QG-p6U"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="fzI-Ih-Ukk">
                             <connections>
-                                <segue destination="kmw-JM-X5h" kind="show" identifier="settingsSegue" id="iWl-Wf-Zlx"/>
+                                <action selector="settingsButtonTapped:" destination="BYZ-38-t0r" id="MMT-4w-Ogl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,6 +87,7 @@
                         <outlet property="pinSubmitButton" destination="cjh-fm-9ZB" id="yoQ-sE-ZeI"/>
                         <outlet property="pinTextField" destination="4Dz-Sb-v9G" id="LHA-Hz-smY"/>
                         <outlet property="pinTitleLabel" destination="IOD-7J-xum" id="KNP-9C-JKc"/>
+                        <segue destination="kmw-JM-X5h" kind="show" identifier="settingsSegue" action="showDetailViewController:sender:" id="kmY-ui-oOQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

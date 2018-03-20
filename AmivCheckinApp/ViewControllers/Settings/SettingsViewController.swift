@@ -10,12 +10,18 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    // MARK: - Variables
+    
     // creating instance of userDefaults
     var userDefaults = CheckinUserDefaults()
+    
+    // MARK: - IB Variables
     
     @IBOutlet weak var serverURL: UITextField!
     @IBOutlet weak var autoRefresh: UISwitch!
     @IBOutlet weak var refreshFrequency: UITextField!
+    
+    // MARK: - Setup
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +35,8 @@ class SettingsViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.resignKeyboard))
         self.view.addGestureRecognizer(recognizer)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    // MARK: - UI functions
 
     @objc func resignKeyboard() {
         self.serverURL.resignFirstResponder()

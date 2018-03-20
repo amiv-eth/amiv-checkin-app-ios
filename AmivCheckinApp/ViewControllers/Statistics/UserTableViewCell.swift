@@ -15,10 +15,14 @@ import UIKit
  */
 class UserTableViewCell: UITableViewCell {
 
+    // MARK: - IB Variables
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var legiLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var membershipStatusLabel: UILabel!
+    
+    // MARK: - Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()

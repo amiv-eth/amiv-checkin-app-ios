@@ -44,12 +44,15 @@ class PopupTableViewController: UIViewController {
         self.view.insertSubview(blurEffectView, belowSubview: self.tableView)
     }
     
+    // MARK: - UI Functions
+    
     @objc func dismissViewController() {
         self.dismiss(animated: false, completion: nil)
     }
 
 }
 
+// MARK: - UITableView Protocols extension
 extension PopupTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

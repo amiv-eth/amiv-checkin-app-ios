@@ -15,6 +15,8 @@ import Foundation
  */
 public struct User: Decodable {
     
+    // MARK: - Variables
+    
     let checked_in: Bool
     let email: String
     let firstname: String
@@ -25,6 +27,18 @@ public struct User: Decodable {
     let signup_id: Int
     let user_id: String
     
+}
+
+extension User {
+    
+    /**
+     Get User Details to display on statistics table view
+     
+     - Parameter at: IndexPath of element to display
+     
+     - Returns: Key (title) and associated value
+     
+     */
     public func getDetail(_ at: Int) -> (String, value: String) {
         switch at {
         case 0:
@@ -49,5 +63,4 @@ public struct User: Decodable {
             return ("NaN", "NaN")
         }
     }
-    
 }

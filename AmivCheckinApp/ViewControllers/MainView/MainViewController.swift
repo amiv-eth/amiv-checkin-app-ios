@@ -10,13 +10,14 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    // MARK: - IB Variables
+    
     @IBOutlet weak var pinTitleLabel: UILabel!
     @IBOutlet weak var pinSubmitButton: UIButton!
     @IBOutlet weak var pinTextField: UITextField!
     
-    @IBAction func settingsTapped(_ sender: Any) {
-        performSegue(withIdentifier: "settingsSegue", sender: self)
-    }
+    // MARK: - Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,15 +33,7 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         self.navigationController?.view.backgroundColor = .white
     }
- /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "settingsSegue"){
-            if let navigationView = segue.destination as? UINavigationController, let settingsView = navigationView.viewControllers.first as? SettingsViewController {
-                settingsView.serverURL.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.2745098039, blue: 0.168627451, alpha: 1)
-            }
-        }
-    }
-  */
+    
     func setUpSubmitButton() {
         self.pinSubmitButton.setTitleColor(.white, for: .normal)
         self.pinSubmitButton.layer.backgroundColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1).cgColor
@@ -50,12 +43,17 @@ class MainViewController: UIViewController {
         self.pinSubmitButton.layer.shadowRadius = 10.0
         self.pinSubmitButton.layer.masksToBounds = false
     }
-
-    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
-    }
     
     @objc func resignKeyboard() {
         self.pinTextField.resignFirstResponder()
+    }
+    
+    // MARK: - View functions
+    
+    @IBAction func unwindToMain(segue: UIStoryboardSegue) {}
+    
+    @IBAction func settingsButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "settingsSegue", sender: self)
     }
 
     @IBAction func pinSubmitButtonTapped(_ sender: Any) {
@@ -65,7 +63,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     @IBAction func websiteButtonTapped(_ sender: Any) {
         let userDefaults = CheckinUserDefaults()
         if let url = URL(string: userDefaults.urlAdress) {
@@ -74,6 +71,7 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - CheckinPinResponseDelegae protocol extension
 extension MainViewController: CheckinPinResponseDelegate {
     
     func validPin(_ message: String) {
@@ -100,8 +98,6 @@ extension MainViewController: CheckinPinResponseDelegate {
             
             self.performSegue(withIdentifier: "settingsSegue", sender: self)
         }
-        
-
     }
 }
 

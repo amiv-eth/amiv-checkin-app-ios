@@ -8,12 +8,24 @@
 
 import Foundation
 
+/**
+ Backend communication with checkin api server.
+ 
+ - Validate pin code for event
+ - Check student in and out of event
+ - Get statistics data for current event
+ 
+ */
 public class Checkin {
+    
+    // MARK: - Variables
     
     private let apiUrl: URL
     private var periodicUpdate: Bool
     private let userDefaults: CheckinUserDefaults
 
+    // MARK: - Initializer
+    
     public init() {
         let userDefaults = CheckinUserDefaults()
         self.userDefaults = userDefaults
@@ -27,8 +39,8 @@ public class Checkin {
      Function for checking an event PIN.
      
      - parameters:
-        - pin: the PIN to be checked
-        - delegate: a CheckinPinResponseDelegate
+        - pin: The PIN to be checked
+        - delegate: Delegate to be called after response from server
      
      */
     public func check(_ pin: String, delegate: CheckinPinResponseDelegate) {
@@ -49,17 +61,21 @@ public class Checkin {
         let task = URLSession(configuration: config).dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else {
                 delegate.checkPinError((error?.localizedDescription)!)
-                return }
+                return
+            }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
             if status.statusCode != 200 {
+                // Invalid pin
                 delegate.invalidPin(message, statusCode: status.statusCode)
             } else {
+                // Valid pin
                 self.userDefaults.eventPin = pin
                 delegate.validPin(message)
             }
         }
+        // Start URLSession request
         task.resume()
     }
     
@@ -68,9 +84,9 @@ public class Checkin {
      Function for checking a scanned Legi.
      
      - parameters:
-        - pin: the PIN to be checked
-        - mode: whether to check in or out, represented as a CheckinMode
-        - delegate: a CheckLegiRequestDelegate
+        - legi: Legi number to check In or Out (or NETHZ / email adress of student)
+        - mode: Check In or Out of student
+        - delegate: Delegate to be called after server response
      
      */
     public func check(_ legi: String, mode: CheckinMode, delegate: CheckLegiRequestDelegate) {
@@ -94,9 +110,12 @@ public class Checkin {
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
             if status.statusCode != 200 {
+                // Check failed
                 delegate.legiCheckFailed(message, statusCode: status.statusCode)
             } else {
+                // Check was successfull
                 do {
+                    // Decode response Json as CheckOutResponse
                     let decoder = JSONDecoder()
                     let json = try decoder.decode(CheckOutResponse.self, from: data)
                     delegate.legiCheckSuccess(json)
@@ -106,6 +125,7 @@ public class Checkin {
                 
             }
         }
+        // Start URLSession request
         task.resume()
     }
     
@@ -114,7 +134,7 @@ public class Checkin {
      Function for checking event details.
      
      - parameters:
-        - delegate: a CheckEventDetailsRequestDelegate
+        - delegate: Delegate to be called after server resposne
      
      */
     public func checkEventDetails(_ delegate: CheckEventDetailsRequestDelegate) {
@@ -127,15 +147,19 @@ public class Checkin {
         request.setValue(pin, forHTTPHeaderField: "pin")
         request.httpMethod = "GET"
         
+        // URLSession task
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { return }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             print(message)
             if status.statusCode != 200 {
+                // Check failed
                 delegate.eventDetailsCheckFailed(message, statusCode: status.statusCode)
             } else {
+                // Check successfull
                 do {
+                    // Decode response Json as EventDetail
                     let decoder = JSONDecoder()
                     let json = try decoder.decode(EventDetail.self, from: data)
                     delegate.eventDetailsCheckSuccess(json)
@@ -145,9 +169,16 @@ public class Checkin {
                 }
             }
         }
+        // Start URLSession request
         task.resume()
     }
     
+    /**
+     Automatic EventDetails refresh update caller
+     
+     - Parameter delegate: Delegate to be called after refresh
+     
+     */
     private func callUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
         guard self.periodicUpdate else { return }
         
@@ -158,6 +189,12 @@ public class Checkin {
         }
     }
     
+    /**
+     Start automatic EventDetails refresh
+     
+     - Parameter delegate: Delegate to be called after refresh
+     
+     */
     public func startPeriodicUpdate(_ delegate: CheckEventDetailsRequestDelegate) {
         guard self.userDefaults.autoRefresh else { return }
         self.periodicUpdate = true
@@ -165,6 +202,10 @@ public class Checkin {
         self.callUpdate(delegate)
     }
     
+    /**
+     Stop automatic EventDetail refresh
+     
+     */
     public func stopPeriodicUpdate() {
         self.periodicUpdate = false
     }

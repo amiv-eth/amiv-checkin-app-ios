@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         
+        // Delete the event pin when closing the app.
         let defaults = CheckinUserDefaults()
         defaults.eventPin = nil
     }
