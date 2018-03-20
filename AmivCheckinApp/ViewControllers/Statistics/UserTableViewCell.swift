@@ -24,19 +24,11 @@ class UserTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func config(_ user: User, counting: Bool) {
+    func config(_ user: User) {
         self.nameLabel.text = user.firstname + " " + user.lastname
         self.legiLabel.text = user.legi
-        if counting {
-            self.statusLabel.text = "\(user.checkin_count)"
-        } else if user.checked_in {
+        if user.checked_in {
             self.statusLabel.text = "In"
         } else {
             self.statusLabel.text = "Out"

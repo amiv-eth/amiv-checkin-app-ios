@@ -20,7 +20,7 @@ import Foundation
  The two statistics first sent are displayed in the barcode scanning view.
  
  */
-public struct Statistics: Codable {
+public struct Statistics: Decodable {
     
     let key: String
     let value: Int

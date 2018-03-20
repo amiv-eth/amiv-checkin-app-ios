@@ -98,7 +98,7 @@ class BarcodeScanViewController: UIViewController {
     
     func setupStatsView() {
         
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.statsView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -183,10 +183,6 @@ class BarcodeScanViewController: UIViewController {
     }
     
     // MARK: - Barcode Handling
-    
-    func setupFailed() {
-        debugPrint("Failed to set up barcode scanning")
-    }
     
     func configureOverlay(_ message: String, textColor: UIColor, overlayTint: UIColor, image: UIImage, orange: Bool) {
         // display an overlay and give quick vibration feedback

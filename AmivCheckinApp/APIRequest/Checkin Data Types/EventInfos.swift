@@ -13,14 +13,10 @@ import Foundation
  Struct describing infos in server-returned event detail data.
  
  */
-public struct EventInfos: Codable {
+public struct EventInfos: Decodable {
     
-   // let _created: String
-    //let _etag: String
     let _id: String
-    //let _links
     let description: String?
-    //let checkin_type: CheckinType
     let event_type: EventType
     let signup_count: Int
     let spots: Int?
@@ -35,8 +31,6 @@ public struct EventInfos: Codable {
             return ("Identifier", self._id)
         case 2:
             return ("Description", self.description != nil ? self.description! : "NaN")
-       // case 3:
-        //    return ("Check-in Type", self.checkin_type.description)
         case 3:
             return ("Event Type", self.event_type.description)
         case 4:

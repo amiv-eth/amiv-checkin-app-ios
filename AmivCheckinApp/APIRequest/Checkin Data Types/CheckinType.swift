@@ -16,7 +16,7 @@ import Foundation
  (EventType \elementOf EventInfos \subsetOf EventDetail)
  
  */
-public enum CheckinType: Codable {
+public enum CheckinType: Decodable {
     
     case in_out
     case counter
@@ -36,10 +36,6 @@ public enum CheckinType: Codable {
         default:
             self = .in_out
         }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        debugPrint("encoding...")
     }
 }
 

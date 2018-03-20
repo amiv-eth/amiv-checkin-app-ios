@@ -153,7 +153,6 @@
 				B066E0D4205D1D5200C86574 /* CheckinPinResponseDelegate.swift */,
 				B0325EDA205D2F7100D46B60 /* CheckLegiRequestDelegate.swift */,
 				B0325EE0205D3CB900D46B60 /* CheckEventDetailsRequestDelegate.swift */,
-				B0325EDE205D372700D46B60 /* CheckOutResponse.swift */,
 				B0325EDC205D30B400D46B60 /* CheckinMode.swift */,
 			);
 			path = APIRequest;
@@ -169,6 +168,7 @@
 				B09D18BF205D9B6D00B52D74 /* UserMembership.swift */,
 				B0325EE2205D473A00D46B60 /* User.swift */,
 				37E421C8205E877C00F25919 /* CheckinType.swift */,
+				B0325EDE205D372700D46B60 /* CheckOutResponse.swift */,
 			);
 			path = "Checkin Data Types";
 			sourceTree = "<group>";

@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmk-gL-9Sa">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFL-IO-Npe">
                                         <rect key="frame" x="10" y="10" width="275" height="30"/>
@@ -105,7 +105,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="YSz-Zz-kFA" secondAttribute="bottom" constant="50" id="219-nC-PJo"/>
+                                    <constraint firstAttribute="bottom" secondItem="YSz-Zz-kFA" secondAttribute="bottom" constant="30" id="219-nC-PJo"/>
                                     <constraint firstItem="PUd-3n-i48" firstAttribute="leading" secondItem="DFL-IO-Npe" secondAttribute="trailing" constant="10" id="4yY-ZC-bC1"/>
                                     <constraint firstAttribute="trailing" secondItem="PUd-3n-i48" secondAttribute="trailing" constant="10" id="5I7-8A-kcT"/>
                                     <constraint firstItem="YSz-Zz-kFA" firstAttribute="top" secondItem="PUd-3n-i48" secondAttribute="bottom" constant="10" id="P0Q-sB-jzG"/>

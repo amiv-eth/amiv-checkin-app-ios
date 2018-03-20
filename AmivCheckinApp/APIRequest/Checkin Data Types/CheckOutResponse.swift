@@ -13,7 +13,7 @@ import Foundation
  Struct describing the data returned from the server for a Legi check.
  
  */
-public struct CheckOutResponse: Codable {
+public struct CheckOutResponse: Decodable {
     
     let message: String
     let signup: User

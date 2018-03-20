@@ -15,13 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-/*
-    Coding-Weekend March 2018 Tests:
-         
-         PIN: 84538431
-         Legi: S17948324
- */
-        
         UIApplication.shared.statusBarStyle = .lightContent
         
         return true

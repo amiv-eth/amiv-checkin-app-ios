@@ -15,7 +15,7 @@ import Foundation
  (EventType \elementOf EventInfos \subsetOf EventDetail)
  
  */
-public enum EventType: Codable {
+public enum EventType: Decodable {
     
     case pvk
     case gv
@@ -45,10 +45,6 @@ public enum EventType: Codable {
         default:
             self = .unknown
         }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        debugPrint("encoding...")
     }
 }
 

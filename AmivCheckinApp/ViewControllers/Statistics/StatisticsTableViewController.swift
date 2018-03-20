@@ -119,7 +119,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDelegate, UITa
             return cell
         case .people:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.peopleCell.rawValue) as! UserTableViewCell
-            cell.config(data.signups[indexPath.row], counting: false /* change!!! */)
+            cell.config(data.signups[indexPath.row])
             cell.selectionStyle = .none
             return cell
         case .statistics:

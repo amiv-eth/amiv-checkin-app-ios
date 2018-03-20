@@ -13,7 +13,7 @@ import Foundation
  Struct describing server-returned event details.
  
  */
-public struct EventDetail: Codable {
+public struct EventDetail: Decodable {
     
     let eventinfos: EventInfos
     let signups: [User]

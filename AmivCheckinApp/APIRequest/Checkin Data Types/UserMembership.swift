@@ -20,7 +20,7 @@ import Foundation
  - 'none' (not a member)
  
  */
-public enum UserMembership: Codable {
+public enum UserMembership: Decodable {
     
     case regular
     case extraordinary
@@ -48,10 +48,6 @@ public enum UserMembership: Codable {
         default:
             self = .none
         }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        print("encoding membership")
     }
     
 }
