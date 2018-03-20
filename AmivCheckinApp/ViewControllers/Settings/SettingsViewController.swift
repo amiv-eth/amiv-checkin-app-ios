@@ -14,12 +14,8 @@ class SettingsViewController: UIViewController {
     var userDefaults = CheckinUserDefaults()
     
     @IBOutlet weak var serverURL: UITextField!
-    
     @IBOutlet weak var autoRefresh: UISwitch!
-    
     @IBOutlet weak var refreshFrequency: UITextField!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +25,7 @@ class SettingsViewController: UIViewController {
         autoRefresh.isOn = (userDefaults.autoRefresh)
         refreshFrequency.text = String((userDefaults.refreshFrequency))
         
+        // set up tapgesturerecognizer to get rid of keyboard
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.resignKeyboard))
         self.view.addGestureRecognizer(recognizer)
     }
@@ -38,18 +35,21 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func doneButtonTapped(_ sender: Any) {
-        // save settings
-        userDefaults.urlAdress = serverURL.text!
-        userDefaults.autoRefresh = autoRefresh.isOn
-        userDefaults.refreshFrequency = Double(refreshFrequency.text!)!
-        
-        // exit via segue
-        self.performSegue(withIdentifier: "unwindToMain", sender: self)
-    }
-    
     @objc func resignKeyboard() {
         self.serverURL.resignFirstResponder()
         self.refreshFrequency.resignFirstResponder()
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        if let url = self.serverURL.text, let freq = self.refreshFrequency.text, let frequency = Int(freq) {
+            
+            // save settings before closing
+            userDefaults.urlAdress = url
+            userDefaults.autoRefresh = autoRefresh.isOn
+            userDefaults.refreshFrequency = frequency
+        }
+        
+        // exit via segue
+        self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
 }

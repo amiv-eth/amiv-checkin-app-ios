@@ -13,7 +13,6 @@ import AVFoundation
 extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        //captureSession.stopRunning()
         
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -23,5 +22,4 @@ extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
             checkin.check(stringValue, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
-    
 }

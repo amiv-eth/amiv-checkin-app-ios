@@ -8,7 +8,12 @@
 
 import Foundation
 
-public struct EventDetail: Codable {
+/**
+ 
+ Struct describing server-returned event details.
+ 
+ */
+public struct EventDetail: Decodable {
     
     let eventinfos: EventInfos
     let signups: [User]
