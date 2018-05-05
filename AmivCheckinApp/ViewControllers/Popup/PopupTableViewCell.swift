@@ -25,6 +25,10 @@ class PopupTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         self.keyLabel.numberOfLines = 0
         self.valueLabel.numberOfLines = 0
+        self.keyLabel.textColor = .white
+        self.valueLabel.textColor = .white
+        self.backgroundColor = .clear
+        self.layer.backgroundColor = UIColor.clear.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

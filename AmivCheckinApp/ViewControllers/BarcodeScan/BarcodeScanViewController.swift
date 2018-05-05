@@ -27,6 +27,8 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
     
+    var blurIsLoaded: Bool = false
+    
     // Variables
     
     let captureSession = AVCaptureSession()
@@ -91,6 +93,11 @@ class BarcodeScanViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.checkin.startPeriodicUpdate(self)
+        
+        if !self.blurIsLoaded {
+            self.setupStatsView()
+            self.blurIsLoaded = true
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -98,22 +105,18 @@ class BarcodeScanViewController: UIViewController {
         self.checkin.stopPeriodicUpdate()
     }
     
-    override func viewDidLayoutSubviews() {
-        self.setupStatsView()
-    }
-    
     func setupStatsView() {
-        
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.statsView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         self.statsView.insertSubview(blurEffectView, belowSubview: self.manualInputTextField)
         
         let gradient = CAGradientLayer()
         gradient.frame = self.statsView.bounds
         gradient.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
-        gradient.locations = [0.7, 1.0]
+        gradient.locations = [0.6, 1.0]
         blurEffectView.layer.mask = gradient
     }
     
@@ -169,7 +172,7 @@ class BarcodeScanViewController: UIViewController {
 
         previewLayer!.frame = self.view.layer.bounds
         previewLayer!.videoGravity = .resizeAspectFill
-        self.view.layer.insertSublayer(previewLayer!, below: self.overlay.layer)
+        self.view.layer.insertSublayer(previewLayer!, below: self.statsView.layer)
         
         debugPrint("Set up success")
     }
@@ -203,26 +206,26 @@ class BarcodeScanViewController: UIViewController {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         // configure overlay for success indication
-        label.text = message
-        label.textColor = textColor
-        overlay.backgroundColor = overlayTint
+        self.label.text = message
+        self.label.textColor = textColor
+        self.overlay.backgroundColor = overlayTint
         self.image.image = image
         self.image.tintColor = textColor
         
         // show overlay
-        overlay.isHidden = false
-        label.isHidden = false
+        self.overlay.isHidden = false
+        self.label.isHidden = false
         self.image.isHidden = false
     }
     
     @objc func overlayTapped(_ sender: UITapGestureRecognizer) {
         // hide overlay
-        overlay.isHidden = true
-        label.isHidden = true
-        image.isHidden = true
+        self.overlay.isHidden = true
+        self.label.isHidden = true
+        self.image.isHidden = true
         
         // restart scanning for barcodes
-        captureSession.startRunning()
+        self.captureSession.startRunning()
     }
     
     @objc func resignKeyboard() {

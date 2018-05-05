@@ -31,6 +31,8 @@ class PopupTableViewController: UIViewController {
         self.view.addGestureRecognizer(recognizer)
         
         self.tableView.layer.cornerRadius = 15
+        self.tableView.backgroundColor = .clear
+        self.tableView.layer.backgroundColor = UIColor.clear.cgColor
         
         if let user = self.user {
             self.details = user.getDetail()
@@ -42,7 +44,7 @@ class PopupTableViewController: UIViewController {
     }
     
     func addBlur() {
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

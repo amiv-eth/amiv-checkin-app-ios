@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,29 +30,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="axF-0X-fxy">
-                                                    <rect key="frame" x="15" y="11" width="285" height="22.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUU-hB-BEj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INu-Xl-M40">
-                                                            <rect key="frame" x="-15" y="0.0" width="0.0" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUU-hB-BEj">
+                                                    <rect key="frame" x="15" y="11" width="44.5" height="22"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INu-Xl-M40">
+                                                    <rect key="frame" x="258" y="11" width="42" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="axF-0X-fxy" firstAttribute="top" secondItem="r51-8V-nep" secondAttribute="topMargin" id="HbV-4m-LnQ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="axF-0X-fxy" secondAttribute="bottom" id="aDo-0S-9oi"/>
-                                                <constraint firstItem="axF-0X-fxy" firstAttribute="leading" secondItem="r51-8V-nep" secondAttribute="leadingMargin" id="iRr-ui-5Dg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="axF-0X-fxy" secondAttribute="trailing" id="txD-d0-m2K"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="INu-Xl-M40" secondAttribute="bottom" id="GPV-8X-K0V"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="INu-Xl-M40" secondAttribute="trailing" id="IBm-WB-hL0"/>
+                                                <constraint firstItem="xUU-hB-BEj" firstAttribute="top" secondItem="r51-8V-nep" secondAttribute="topMargin" id="JeW-Wt-aM2"/>
+                                                <constraint firstItem="INu-Xl-M40" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xUU-hB-BEj" secondAttribute="trailing" constant="10" id="K4B-hD-Zls"/>
+                                                <constraint firstItem="xUU-hB-BEj" firstAttribute="leading" secondItem="r51-8V-nep" secondAttribute="leadingMargin" id="Zdr-1G-UVz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xUU-hB-BEj" secondAttribute="bottom" id="s6q-55-QZy"/>
+                                                <constraint firstItem="INu-Xl-M40" firstAttribute="top" secondItem="r51-8V-nep" secondAttribute="topMargin" id="tRn-sd-IaY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
