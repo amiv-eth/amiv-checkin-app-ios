@@ -17,13 +17,14 @@ public struct User: Decodable {
     
     // MARK: - Variables
     
-    let checked_in: Bool
+    let checked_in: Bool?
     let email: String
     let firstname: String
     let lastname: String
     let legi: String?
     let membership: UserMembership
     let nethz: String?
+    let freebies_taken: Int?
     let signup_id: Int
     let user_id: String
     
@@ -34,33 +35,31 @@ extension User {
     /**
      Get User Details to display on statistics table view
      
-     - Parameter at: IndexPath of element to display
-     
      - Returns: Key (title) and associated value
      
      */
-    public func getDetail(_ at: Int) -> (String, value: String) {
-        switch at {
-        case 0:
-            return ("First name", self.firstname)
-        case 1:
-            return ("Last name", self.lastname)
-        case 2:
-            return ("Checked in", self.checked_in ? "In" : "Out")
-        case 3:
-            return ("Email", self.email)
-        case 4:
-            return ("Legi", self.legi != nil ? self.legi! : "NaN")
-        case 5:
-            return ("Membership", self.membership.description)
-        case 6:
-            return ("NETHZ", self.nethz != nil ? self.nethz! : "NaN")
-        case 7:
-            return ("Sign up ID", String(describing: self.signup_id))
-        case 8:
-            return ("User ID", self.user_id)
-        default:
-            return ("NaN", "NaN")
+    public func getDetail() -> [(String, value: String)] {
+        
+        var detail: [(String, String)] = []
+        
+        detail.append(("First name", self.firstname))
+        detail.append(("Last name", self.lastname))
+        
+        if let checkedIn = self.checked_in {
+            detail.append(("Checked in", checkedIn ? "In" : "Out"))
         }
+        
+        if let freebiesTaken = self.freebies_taken {
+            detail.append(("Freebies Taken", String(describing: freebiesTaken)))
+        }
+        
+        detail.append(("Email", self.email))
+        detail.append(("Legi", self.legi != nil ? self.legi! : "No Legi"))
+        detail.append(("Membership", self.membership.description))
+        detail.append(("NETHZ", self.nethz != nil ? self.nethz! : "No NETHZ Username"))
+        detail.append(("Sign up ID", String(describing: self.signup_id)))
+        detail.append(("User ID", self.user_id))
+        
+        return detail
     }
 }

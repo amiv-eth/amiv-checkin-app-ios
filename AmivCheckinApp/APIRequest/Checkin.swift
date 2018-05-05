@@ -20,8 +20,19 @@ public class Checkin {
     
     // MARK: - Variables
     
+    /**
+     URL to send requests to
+     */
     private let apiUrl: URL
+    
+    /**
+     Periodic detail request is enabled
+     */
     private var periodicUpdate: Bool
+    
+    /**
+     Settings
+     */
     private let userDefaults: CheckinUserDefaults
 
     // MARK: - Initializer
@@ -65,6 +76,8 @@ public class Checkin {
             }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
+            
+            debugPrint(message)
             
             if status.statusCode != 200 {
                 // Invalid pin
@@ -152,7 +165,9 @@ public class Checkin {
             guard error == nil, let data = data else { return }
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
-            print(message)
+            
+            debugPrint(message)
+            
             if status.statusCode != 200 {
                 // Check failed
                 delegate.eventDetailsCheckFailed(message, statusCode: status.statusCode)
@@ -162,6 +177,7 @@ public class Checkin {
                     // Decode response Json as EventDetail
                     let decoder = JSONDecoder()
                     let json = try decoder.decode(EventDetail.self, from: data)
+                    debugPrint(json)
                     delegate.eventDetailsCheckSuccess(json)
                 } catch let error {
                     debugPrint("Error parsing json: ", message)

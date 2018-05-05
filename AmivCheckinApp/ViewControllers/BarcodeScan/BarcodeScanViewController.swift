@@ -19,8 +19,10 @@ class BarcodeScanViewController: UIViewController {
     @IBOutlet weak var checkSegmentedControl: UISegmentedControl!
     @IBOutlet weak var manualInputTextField: UITextField!
     @IBOutlet weak var statsView: UIView!
-    @IBOutlet weak var currentCountLabel: UILabel!
-    @IBOutlet weak var regularCountLabel: UILabel!
+    @IBOutlet weak var primaryInfoMessage: UILabel!
+    @IBOutlet weak var primaryInfoTitle: UILabel!
+    @IBOutlet weak var secondaryInfoMessage: UILabel!
+    @IBOutlet weak var secondaryInfoTitle: UILabel!
     @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -35,9 +37,11 @@ class BarcodeScanViewController: UIViewController {
     var eventDetail: EventDetail? {
         didSet {    //  display the two top statistics of the eventinfo
             DispatchQueue.main.async {
-                if let first = self.eventDetail?.statistics.first?.value, let second = self.eventDetail?.statistics[1].value {
-                    self.currentCountLabel.text = String(describing: first)
-                    self.regularCountLabel.text = String(describing: second)
+                if let first = self.eventDetail?.statistics.first, let second = self.eventDetail?.statistics[1] {
+                    self.primaryInfoMessage.text = String(describing: first.value)
+                    self.primaryInfoTitle.text = first.key
+                    self.secondaryInfoMessage.text = String(describing: second.value)
+                    self.secondaryInfoTitle.text = second.key
                 }
             }
         }
@@ -55,10 +59,12 @@ class BarcodeScanViewController: UIViewController {
         self.setupInputField()
         self.navigationItem.largeTitleDisplayMode = .never
         
-        self.currentCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
-        self.currentCountLabel.text = String(describing: 0)
-        self.regularCountLabel.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
-        self.regularCountLabel.text = String(describing: 0)
+        self.primaryInfoMessage.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
+        self.primaryInfoMessage.text = ""
+        self.primaryInfoTitle.text = ""
+        self.secondaryInfoMessage.textColor = UIColor(red: 232/255, green: 70/255, blue: 43/255, alpha: 1)
+        self.secondaryInfoMessage.text = ""
+        self.secondaryInfoTitle.text = ""
         
         // start scanning for barcodes
         self.setupBarcodeScanning()
@@ -98,7 +104,7 @@ class BarcodeScanViewController: UIViewController {
     
     func setupStatsView() {
         
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.statsView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

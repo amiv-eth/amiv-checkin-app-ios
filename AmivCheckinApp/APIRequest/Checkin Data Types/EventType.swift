@@ -19,14 +19,14 @@ public enum EventType: Decodable {
     
     case pvk
     case gv
-    case counter
+    case freebies
     case events
     case unknown
     
     private enum CodingKeys: String, CodingKey {
         case pvk = "AMIV PVK"
         case gv = "AMIV General Assemblies"
-        case counter = "XXX COUNTER"
+        case freebies = "AMIV Freebies"
         case events = "AMIV Events"
         case unknown
     }
@@ -38,8 +38,8 @@ public enum EventType: Decodable {
             self = .pvk
         case CodingKeys.gv.rawValue:
             self = .gv
-        case CodingKeys.counter.rawValue:
-            self = .counter
+        case CodingKeys.freebies.rawValue:
+            self = .freebies
         case CodingKeys.events.rawValue:
             self = .events
         default:
@@ -56,8 +56,8 @@ extension EventType: CustomStringConvertible {
             return "AMIV PVK"
         case .gv:
             return "AMIV General Assemblies"
-        case .counter:
-            return "XXX COUNTER"
+        case .freebies:
+            return "AMIV Freebies"
         case .events:
             return "AMIV Events"
         case .unknown:

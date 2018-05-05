@@ -13,6 +13,7 @@ class StatisticsTableViewController: UIViewController {
     // MARK: - Variables
     
     var eventDetail: EventDetail?
+    var eventInfos: [(String, String)] = []
     let checkin = Checkin()
     let searchController = UISearchController()
     
@@ -35,7 +36,7 @@ class StatisticsTableViewController: UIViewController {
         case eventInfo
     }
     
-    var state: State = .statistics {
+    var state: State = .eventInfo {
         didSet {
             statisticsTableView.reloadData()
         }
@@ -55,7 +56,13 @@ class StatisticsTableViewController: UIViewController {
         refreshController.addTarget(self, action: #selector(self.refreshUI), for: .valueChanged)
         self.statisticsTableView.refreshControl = refreshController
         
-        self.setupSearchController()
+        if let detail = self.eventDetail {
+            self.eventInfos = detail.eventinfos.getDetail()
+        }
+        
+        self.setupSegmentedControl()
+        
+        //self.setupSearchController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +75,14 @@ class StatisticsTableViewController: UIViewController {
         self.checkin.stopPeriodicUpdate()
     }
     
+    func setupSegmentedControl() {
+        self.stateSegmentedControl.setTitle("Event Info", forSegmentAt: 0)
+        self.stateSegmentedControl.setTitle("People", forSegmentAt: 1)
+        self.stateSegmentedControl.setTitle("Stats", forSegmentAt: 2)
+        self.stateSegmentedControl.selectedSegmentIndex = 0
+    }
+    
+    // TODO: Implement search controller
     func setupSearchController() {
         self.searchController.searchResultsUpdater = self
         self.searchController.hidesNavigationBarDuringPresentation = false
@@ -86,13 +101,13 @@ class StatisticsTableViewController: UIViewController {
     @IBAction func stateSegmentedControl(_ sender: Any) {
         switch self.stateSegmentedControl.selectedSegmentIndex {
         case 0:
-            self.state = .statistics
+            self.state = .eventInfo
             self.statisticsTableView.allowsSelection = false
         case 1:
             self.state = .people
             self.statisticsTableView.allowsSelection = true
         default:
-            self.state = .eventInfo
+            self.state = .statistics
             self.statisticsTableView.allowsSelection = false
         }
     }
@@ -109,7 +124,7 @@ extension StatisticsTableViewController: UITableViewDataSource, UITableViewDeleg
         if let detail = eventDetail {
             switch self.state {
             case .eventInfo:
-                return 7
+                return self.eventInfos.count
             case .people:
                 return detail.signups.count
             case .statistics:
@@ -125,7 +140,7 @@ extension StatisticsTableViewController: UITableViewDataSource, UITableViewDeleg
         switch self.state {
         case .eventInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.eventCell.rawValue) as! EventInfoTableViewCell
-            let infos = data.eventinfos.getDetail(indexPath.row)
+            let infos = self.eventInfos[indexPath.row]
             cell.config(infos.0, value: infos.1)
             cell.selectionStyle = .none
             return cell

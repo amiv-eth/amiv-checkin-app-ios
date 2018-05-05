@@ -17,6 +17,7 @@ class PopupTableViewController: UIViewController {
     // MARK: - Variables
     
     var user: User?
+    var details: [(String, String)] = []
     
     // MARK: - Setup
     
@@ -30,6 +31,10 @@ class PopupTableViewController: UIViewController {
         self.view.addGestureRecognizer(recognizer)
         
         self.tableView.layer.cornerRadius = 15
+        
+        if let user = self.user {
+            self.details = user.getDetail()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -37,7 +42,7 @@ class PopupTableViewController: UIViewController {
     }
     
     func addBlur() {
-        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -60,15 +65,15 @@ extension PopupTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return self.details.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "popupCell") as? PopupTableViewCell, let user = self.user else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "popupCell") as? PopupTableViewCell else {
             return UITableViewCell()
         }
         
-        let info = user.getDetail(indexPath.row)
+        let info = self.details[indexPath.row]
         cell.config(info.0, value: info.1)
         cell.selectionStyle = .none
         

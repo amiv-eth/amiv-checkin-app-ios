@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0m-hf-kkV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0m-hf-kkV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +26,7 @@
                                         <rect key="frame" x="40" y="131" width="295" height="342"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIw-6d-b2i">
-                                                <rect key="frame" x="0.0" y="0.0" width="295" height="42"/>
+                                                <rect key="frame" x="73.5" y="0.0" width="148" height="42"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                                 <color key="textColor" red="0.0030532057862728834" green="0.69205331802368164" blue="0.3124624490737915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -148,12 +148,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="checkSegmentedControl" destination="Hhr-Ug-Bml" id="SFJ-Lr-3ND"/>
-                        <outlet property="currentCountLabel" destination="hOf-cN-Ijp" id="qRv-dy-8X2"/>
                         <outlet property="image" destination="3M4-gJ-Xrf" id="6fb-9r-uZk"/>
                         <outlet property="label" destination="zIw-6d-b2i" id="s14-gj-ft6"/>
                         <outlet property="manualInputTextField" destination="DFL-IO-Npe" id="Fh8-Vi-jWf"/>
                         <outlet property="overlay" destination="c58-QZ-niz" id="KDi-m6-gwE"/>
-                        <outlet property="regularCountLabel" destination="QQx-8C-WgI" id="BkO-DJ-wIr"/>
+                        <outlet property="primaryInfoMessage" destination="hOf-cN-Ijp" id="zyU-8J-Hbe"/>
+                        <outlet property="primaryInfoTitle" destination="nCl-Zy-fUO" id="kOJ-9Q-eas"/>
+                        <outlet property="secondaryInfoMessage" destination="QQx-8C-WgI" id="Bbc-t5-ZrA"/>
+                        <outlet property="secondaryInfoTitle" destination="Gbe-DF-Hik" id="hSj-MY-M44"/>
                         <outlet property="statisticsButton" destination="N6n-gy-KMe" id="biO-JP-Zwh"/>
                         <outlet property="statsView" destination="gmk-gL-9Sa" id="TRr-oa-LRs"/>
                         <outlet property="submitButton" destination="PUd-3n-i48" id="sDA-bd-uAv"/>

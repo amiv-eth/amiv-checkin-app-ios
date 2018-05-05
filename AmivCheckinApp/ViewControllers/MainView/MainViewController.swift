@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
     @IBAction func websiteButtonTapped(_ sender: Any) {
         let userDefaults = CheckinUserDefaults()
         if let url = URL(string: userDefaults.urlAdress) {
-            UIApplication.shared.open(url) {_ in }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
