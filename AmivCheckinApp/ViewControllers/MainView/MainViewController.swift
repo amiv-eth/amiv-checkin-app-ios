@@ -9,12 +9,17 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
+    // MARK: - Variables
+    
+    let userDefaults = CheckinUserDefaults()
+    
     // MARK: - IB Variables
     
     @IBOutlet weak var pinTitleLabel: UILabel!
     @IBOutlet weak var pinSubmitButton: UIButton!
     @IBOutlet weak var pinTextField: UITextField!
+    @IBOutlet weak var lastSessionButton: UIButton!
     
     // MARK: - Setup
     
@@ -32,6 +37,18 @@ class MainViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         self.navigationController?.view.backgroundColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.userDefaults.eventPin == nil {
+            self.lastSessionButton.isHidden = true
+            self.lastSessionButton.isEnabled = false
+        } else {
+            self.lastSessionButton.isHidden = false
+            self.lastSessionButton.isEnabled = true
+        }
     }
     
     func setUpSubmitButton() {
@@ -58,16 +75,31 @@ class MainViewController: UIViewController {
 
     @IBAction func pinSubmitButtonTapped(_ sender: Any) {
         if let pin = self.pinTextField.text {
-            let checkin = Checkin()
-            checkin.check(pin, delegate: self)
+            self.validate(pin)
         }
     }
     
+    @IBAction func loadLastSession(_ sender: Any) {
+        guard let pin = self.userDefaults.eventPin else {
+            return
+        }
+        
+        self.pinTextField.text = pin
+        
+        self.validate(pin)
+    }
+    
     @IBAction func websiteButtonTapped(_ sender: Any) {
-        let userDefaults = CheckinUserDefaults()
-        if let url = URL(string: userDefaults.urlAdress) {
+        if let url = URL(string: self.userDefaults.urlAdress) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    // MARK: - Pin Validation
+    
+    private func validate(_ pin: String) {
+        let checkin = Checkin()
+        checkin.check(pin, delegate: self)
     }
 }
 

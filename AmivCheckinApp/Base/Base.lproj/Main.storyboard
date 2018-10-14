@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7jg-Ta-5vq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7jg-Ta-5vq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-fm-9ZB">
-                                <rect key="frame" x="10" y="347" width="355" height="42"/>
+                                <rect key="frame" x="10" y="346.5" width="355" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 <state key="normal" title="Submit">
@@ -30,20 +30,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Event PIN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOD-7J-xum">
-                                <rect key="frame" x="126" y="246" width="124" height="21"/>
+                                <rect key="frame" x="125.5" y="245.5" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="amiv_logo" translatesAutoresizingMaskIntoConstraints="NO" id="8WR-5S-5MF">
-                                <rect key="frame" x="10" y="20" width="355" height="206"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" image="amiv_logo" translatesAutoresizingMaskIntoConstraints="NO" id="8WR-5S-5MF">
+                                <rect key="frame" x="10" y="20" width="355" height="173"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PIN" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Dz-Sb-v9G">
-                                <rect key="frame" x="10" y="287" width="355" height="30"/>
+                                <rect key="frame" x="10" y="286.5" width="355" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-sM-aVE">
-                                <rect key="frame" x="156" y="550" width="62" height="33"/>
+                                <rect key="frame" x="20" y="550" width="62" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Website">
                                     <color key="titleColor" red="0.86666666670000003" green="0.30196078430000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -52,26 +52,38 @@
                                     <action selector="websiteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wkd-4F-Se3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wgc-7W-3tB">
+                                <rect key="frame" x="221" y="550" width="134" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Load last Session">
+                                    <color key="titleColor" red="0.86666666670000003" green="0.30196078430000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadLastSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="esw-Ev-quk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="1D3-Ce-iIT"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="3bh-Is-cMa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xPS-sM-aVE" secondAttribute="bottom" constant="20" id="4fa-jn-KY9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Dz-Sb-v9G" secondAttribute="trailing" constant="10" id="7gc-vL-6UL"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="top" secondItem="IOD-7J-xum" secondAttribute="bottom" constant="20" id="B1z-Tj-M8m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cjh-fm-9ZB" secondAttribute="trailing" constant="10" id="BZU-Ld-Q8p"/>
-                            <constraint firstItem="8WR-5S-5MF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D7G-Ln-PD0"/>
+                            <constraint firstItem="Wgc-7W-3tB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xPS-sM-aVE" secondAttribute="trailing" constant="20" id="E00-jw-Tu3"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="I1f-Ah-CSE"/>
-                            <constraint firstItem="xPS-sM-aVE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ihq-yv-kLG"/>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M9m-0M-I4o"/>
                             <constraint firstItem="IOD-7J-xum" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8WR-5S-5MF" secondAttribute="bottom" constant="20" id="XOd-MT-RKA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IOD-7J-xum" secondAttribute="trailing" constant="10" id="YXE-zO-tV8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8WR-5S-5MF" secondAttribute="trailing" constant="10" id="bVK-9c-Ch0"/>
                             <constraint firstItem="cjh-fm-9ZB" firstAttribute="top" secondItem="4Dz-Sb-v9G" secondAttribute="bottom" constant="30" id="e66-oH-M2Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xPS-sM-aVE" secondAttribute="bottom" constant="20" id="gLJ-3g-Dzd"/>
+                            <constraint firstItem="xPS-sM-aVE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kyc-T4-VoE"/>
                             <constraint firstItem="8WR-5S-5MF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="lUq-RI-88q"/>
                             <constraint firstItem="4Dz-Sb-v9G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="od3-Y1-JFy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wgc-7W-3tB" secondAttribute="bottom" constant="20" id="tMx-XV-tVE"/>
                             <constraint firstItem="8WR-5S-5MF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="yrP-1Z-IVg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wgc-7W-3tB" secondAttribute="trailing" constant="20" id="zZ7-6d-Kbm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -84,6 +96,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="lastSessionButton" destination="Wgc-7W-3tB" id="2qS-Pp-OvJ"/>
                         <outlet property="pinSubmitButton" destination="cjh-fm-9ZB" id="yoQ-sE-ZeI"/>
                         <outlet property="pinTextField" destination="4Dz-Sb-v9G" id="LHA-Hz-smY"/>
                         <outlet property="pinTitleLabel" destination="IOD-7J-xum" id="KNP-9C-JKc"/>
@@ -224,6 +237,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="amiv_logo" width="1024" height="314"/>
+        <image name="amiv_logo" width="567.13848876953125" height="173.90769958496094"/>
     </resources>
 </document>
