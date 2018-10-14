@@ -56,8 +56,6 @@ extension EventInfos {
             details.append(("Spots", String(describing: spots)))
         }
         
-        details.append(("Identifier", self._id))
-        
         return details
     }
 }

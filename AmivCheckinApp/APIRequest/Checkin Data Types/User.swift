@@ -57,8 +57,6 @@ extension User {
         detail.append(("Legi", self.legi != nil ? self.legi! : "No Legi"))
         detail.append(("Membership", self.membership.description))
         detail.append(("NETHZ", self.nethz != nil ? self.nethz! : "No NETHZ Username"))
-        detail.append(("Sign up ID", String(describing: self.signup_id)))
-        detail.append(("User ID", self.user_id))
         
         return detail
     }
