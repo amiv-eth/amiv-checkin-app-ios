@@ -77,8 +77,6 @@ public class Checkin {
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
-            debugPrint(message)
-            
             if status.statusCode != 200 {
                 // Invalid pin
                 delegate.invalidPin(message, statusCode: status.statusCode)
@@ -120,7 +118,8 @@ public class Checkin {
                 return
             }
             
-            guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
+            guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else {
+                return }
             
             if status.statusCode != 200 {
                 // Check failed
@@ -166,8 +165,6 @@ public class Checkin {
             
             guard let status = response as? HTTPURLResponse, let message = String(data: data, encoding: String.Encoding.utf8) else { return }
             
-            debugPrint(message)
-            
             if status.statusCode != 200 {
                 // Check failed
                 delegate.eventDetailsCheckFailed(message, statusCode: status.statusCode)
@@ -177,7 +174,6 @@ public class Checkin {
                     // Decode response Json as EventDetail
                     let decoder = JSONDecoder()
                     let json = try decoder.decode(EventDetail.self, from: data)
-                    debugPrint(json)
                     delegate.eventDetailsCheckSuccess(json)
                 } catch let error {
                     debugPrint("Error parsing json: ", message)

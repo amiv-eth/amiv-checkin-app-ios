@@ -25,7 +25,7 @@ public struct User: Decodable {
     let membership: UserMembership
     let nethz: String?
     let freebies_taken: Int?
-    let signup_id: Int
+    let signup_id: String
     let user_id: String
     
 }

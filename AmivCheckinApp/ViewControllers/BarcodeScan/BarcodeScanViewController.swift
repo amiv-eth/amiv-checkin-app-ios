@@ -186,7 +186,7 @@ class BarcodeScanViewController: UIViewController {
     @IBAction func SubmitButtonTapped(_ sender: Any) {
         self.manualInputTextField.resignFirstResponder()
         
-        if let legi = self.manualInputTextField.text {
+        if let legi = self.manualInputTextField.text, !legi.isEmpty {
             self.checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
@@ -257,7 +257,7 @@ extension BarcodeScanViewController: CheckLegiRequestDelegate {
     }
     
     func checkLegiError(_ message: String) {
-        debugPrint(message)
+        self.legiCheckFailed(message, statusCode: 0)
     }
 }
 
