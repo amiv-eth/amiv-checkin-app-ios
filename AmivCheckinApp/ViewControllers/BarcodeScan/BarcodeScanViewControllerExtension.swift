@@ -18,9 +18,10 @@ extension BarcodeScanViewController: AVCaptureMetadataOutputObjectsDelegate {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
+            let legi = stringValue.replacingOccurrences(of: " ", with: "@")
             self.captureSession.stopRunning()
             let checkin = Checkin()
-            checkin.check(stringValue, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
+            checkin.check(legi, mode: CheckinMode.fromHash(self.checkSegmentedControl.selectedSegmentIndex), delegate: self)
         }
     }
 }
